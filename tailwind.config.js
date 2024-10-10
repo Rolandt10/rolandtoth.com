@@ -2,7 +2,27 @@
 export default {
   content: ["./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}"],
   theme: {
-    extend: {},
+    colors: {
+      dark: {
+        0: "#FFFFFF",
+        100: "#D2D6DA",
+        200: "#9AA3AC",
+        300: "#8F99A3",
+        400: "#5C6670",
+        500: "#25292D",
+        600: "#1C1F22",
+        700: "#121416",
+        800: "#090A0B",
+      },
+      light: {
+        100: "#F8F9FA",
+        200: "#F3F5F7",
+        300: "#D0D5DA",
+        400: "#4A5259",
+        500: "#25292D",
+        600: "#1C1F21",
+      },
+    },
   },
   plugins: [],
 };
