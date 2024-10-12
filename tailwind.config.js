@@ -23,6 +23,17 @@ export default {
         600: "#1C1F21",
       },
     },
+    fontSize: {
+      xsm: "0.825rem",
+      sm: "0.88125rem",
+      base: "0.9375rem",
+      lg: "1rem",
+      xl: "1.06875rem",
+      "2xl": "1.1375rem",
+      "4xl": "1.2125rem",
+      "5xl": "1.29375rem",
+      "6xl": "1.38125rem",
+    },
   },
   plugins: [],
 };
