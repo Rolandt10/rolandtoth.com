@@ -1,0 +1,43 @@
+---
+import { GithubIcon, PinIcon } from "./Icons";
+---
+
+<footer
+  class="flex flex-wrap border-t border-dashed border-light-300 pb-24 pt-24 [grid-area:footer] dark:border-dark-500/75"
+>
+  <div class="flex w-1/2 flex-col text-light-500/80 dark:text-dark-200/85">
+    <span class="mb-8 font-medium text-light-600 dark:text-dark-0">Browse</span>
+    <ul
+      class="[&>li]:mb-3 [&>li]:w-max [&>li]:transition-colors [&>li]:duration-200 dark:hover:[&>li]:text-dark-100"
+    >
+      <li><a href="snapshots">Snapshots</a></li>
+      <li><a href="/">Home</a></li>
+      <li><a href="blog">Blog</a></li>
+    </ul>
+  </div>
+  <div class="flex w-1/2 flex-col text-light-500/80 dark:text-dark-200/85">
+    <span class="mb-8 font-medium text-light-600 dark:text-dark-0">Contact</span
+    >
+    <ul
+      class="[&>li]:mb-3 [&>li]:w-max [&>li]:transition-colors [&>li]:duration-200 dark:hover:[&>li]:text-dark-100"
+    >
+      <li><a href="">Twitter / X</a></li>
+      <li><a href="">E-mail</a></li>
+    </ul>
+  </div>
+  <div class="mt-16 flex w-full text-xsm dark:text-dark-200/85">
+    <div class="flex w-1/2 items-center gap-1">
+      <GithubIcon size={17} className="dark:text-dark-200/65" />
+      <a href="https://github.com/Rolandt10/rolandtoth.com/" class="w-max"
+        ><span
+          class="relative after:absolute after:bottom-0 after:left-0 after:h-[1px] after:w-full after:bg-dark-400 after:transition-colors after:hover:bg-dark-300/90"
+          >rolandt10/rolandtoth.com</span
+        ></a
+      >
+    </div>
+    <a class="flex w-1/2 items-center gap-1"
+      ><PinIcon size={17} className="dark:text-dark-200/65" />Currently located
+      <span class="cursor-pointer">456 km</span> from you</a
+    >
+  </div>
+</footer>
