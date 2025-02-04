@@ -18,6 +18,25 @@ const BaseIcon = ({ label = "", size = "20", children, ...props }) => {
   );
 };
 
+export const BookIcon = ({ size, ...props }) => {
+  return (
+    <BaseIcon label="Book" size={size} {...props}>
+      <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+      <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+    </BaseIcon>
+  );
+};
+
+export const MusicIcon = ({ size, ...props }) => {
+  return (
+    <BaseIcon label="Music" size={size} {...props}>
+      <path d="M9 18V5l12-2v13"></path>
+      <circle cx="6" cy="18" r="3"></circle>
+      <circle cx="18" cy="16" r="3"></circle>
+    </BaseIcon>
+  );
+};
+
 export const HomeIcon = ({ size, ...props }) => {
   return (
     <BaseIcon label="Home" size={size} {...props}>
@@ -44,9 +63,9 @@ export const EmailIcon = ({ size, ...props }) => {
   );
 };
 
-export const BookIcon = ({ size, ...props }) => {
+export const BookOpenIcon = ({ size, ...props }) => {
   return (
-    <BaseIcon label="Blog" size={size} {...props}>
+    <BaseIcon label="Book" size={size} {...props}>
       <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path>
       <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path>
     </BaseIcon>
@@ -116,6 +135,16 @@ export const RSSIcon = ({ size, ...props }) => {
       <path d="M4 11a9 9 0 0 1 9 9"></path>
       <path d="M4 4a16 16 0 0 1 16 16"></path>
       <circle cx="5" cy="19" r="1"></circle>
+    </BaseIcon>
+  );
+};
+
+export const ExternalLinkIcon = ({ size, ...props }) => {
+  return (
+    <BaseIcon label="Arrow right" size={size} {...props}>
+      <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+      <polyline points="15 3 21 3 21 9"></polyline>
+      <line x1="10" y1="14" x2="21" y2="3"></line>
     </BaseIcon>
   );
 };
