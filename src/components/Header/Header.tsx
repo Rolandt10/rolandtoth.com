@@ -16,7 +16,7 @@ const Header = ({ currentPath }) => {
             className="flex h-10 w-10 items-center justify-center rounded-lg border border-light-300 bg-light-200 text-light-400 shadow transition-all duration-200 hover:scale-110 hover:shadow-md dark:border-dark-500 dark:bg-dark-700"
           >
             <MenuIcon
-              size={20}
+              size={18}
               className="dark:text-dark-100"
               stroke-width="1.8"
             />
@@ -37,9 +37,9 @@ const Header = ({ currentPath }) => {
           </li>
         )}
       </ul>
-      <div className="ml-auto text-light-400">
+      {/* <div className="ml-auto text-light-400">
         <ThemeToggle />
-      </div>
+      </div> */}
       <CommandMenu isOpen={isOpen} setIsOpen={setIsOpen} />
     </header>
   );
