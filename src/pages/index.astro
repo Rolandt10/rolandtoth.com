@@ -1,15 +1,85 @@
 ---
+import CurrentlyListening from "../components/CurrentlyListening";
+import CurrentlyReading from "../components/CurrentlyReading.astro";
+import IndexSectionLayout from "../layouts/IndexSectionLayout.astro";
 import Layout from "../layouts/Layout.astro";
+import TrackerLayout from "../layouts/TrackerLayout.astro";
 ---
 
 <Layout title="Roland Tóth">
-  <main class="m-3 border bg-black px-4 text-white">
-    <h1>Something is happening...</h1>
-    <img
-      alt="Granny smashing the keyboard of a Commodore PET computer"
-      src="https://i.giphy.com/media/v1.Y2lkPTc5MGI3NjExOXpvNWV2b3VwOGYwaWVuYW5jOXdwMXV0eG9lcDNnMXc4MGY4ZHN5ZSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/7hJZcKzjIufeOmqKSj/giphy.gif"
-    />
-  </main>
+  <section class="my-40 flex flex-col gap-0">
+    <h1 class="text-xl font-medium text-light-600 dark:text-dark-0">
+      Roland Tóth
+    </h1>
+    <p class="text-base font-normal text-light-500/80 dark:text-dark-200">
+      /ˈrolɒnd toːt/
+    </p>
+  </section>
+  <section class="mb-24 flex flex-col gap-3">
+    <h2 class="text-lg text-light-600 dark:text-dark-0">Welcome!</h2>
+    <p class="text-justify text-light-500/80 dark:text-dark-200">
+      Suspendisse feugiat, metus sed pulvinar sodales, diam urna aliquet magna,
+      ut condimentum tortor purus at tellus. Interdum et malesuada fames ac ante
+      ipsum primis in faucibus. Vestibulum imperdiet dui turpis, et interdum
+      tellus lacinia ullamcorper. Aliquam erat volutpat.
+    </p>
+  </section>
+  <section>
+    <header
+      class="mb-24 flex items-baseline justify-between border-b dark:border-b-dark-500/75"
+    >
+      <h2 class="pb-3 text-lg text-light-600 dark:text-dark-0">Posts</h2>
+      <a href="#" class="flex items-center gap-1 text-xsm dark:text-dark-200">
+        <!-- <RSSIcon size={16} /> -->
+        <span
+          class="relative after:absolute after:bottom-0 after:left-0 after:h-[1px] after:w-full after:bg-dark-400 after:transition-colors after:hover:bg-dark-300/90"
+          >RSS</span
+        ></a
+      >
+    </header>
+  </section>
+  <IndexSectionLayout title="Snapshots">
+    <div class="grid grid-cols-3 gap-4">
+      <div class="aspect-square w-[11.25rem] rounded-lg p-4 dark:bg-dark-700">
+        1
+      </div>
+      <div
+        class="aspect-square w-[11.25rem] rounded-lg border-[1px] p-4 dark:border-dark-500 dark:bg-dark-700"
+      >
+        2
+      </div>
+      <div
+        class="aspect-square w-[11.25rem] rounded-lg border-[1px] p-4 dark:border-dark-500 dark:bg-dark-700"
+      >
+        3
+      </div>
+      <div
+        class="aspect-square w-[11.25rem] rounded-lg border-[1px] p-4 dark:border-dark-500 dark:bg-dark-700"
+      >
+        4
+      </div>
+      <div
+        class="aspect-square w-[11.25rem] rounded-lg border-[1px] p-4 dark:border-dark-500 dark:bg-dark-700"
+      >
+        5
+      </div>
+      <div
+        class="aspect-square w-[11.25rem] rounded-lg border-[1px] p-4 dark:border-dark-500 dark:bg-dark-700"
+      >
+        6
+      </div>
+    </div>
+  </IndexSectionLayout>
+  <IndexSectionLayout title="Trackers">
+    <div class="mb-20 flex max-sm:flex-col">
+      <TrackerLayout title="Reading">
+        <CurrentlyReading />
+      </TrackerLayout>
+    </div>
+    <div class="flex max-sm:flex-col">
+      <TrackerLayout title="Listening">
+        <CurrentlyListening client:load />
+      </TrackerLayout>
+    </div>
+  </IndexSectionLayout>
 </Layout>
-
-<style></style>
