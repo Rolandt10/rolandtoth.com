@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { MusicIcon } from "./Icons";
+import { MusicIcon, PauseIcon, PlayIcon } from "./Icons";
 
 const API_URL =
   "https://adovd1cm2g.execute-api.us-east-1.amazonaws.com/production/currently-playing";
@@ -89,11 +89,21 @@ export default function CurrentSong() {
           alt=""
         />
         <div className="flex flex-col gap-1">
-          <div className="text-base leading-none">{song.song}</div>
-          <div className="text-wrap text-sm dark:text-dark-300">
+          <p className="text-base leading-none">{song.song}</p>
+          <p className="text-wrap text-sm dark:text-dark-300">
             {song.artists.join(", ")}
-          </div>
-          <div className="w-max rounded-full bg-dark-600 px-2 text-[0.8rem] text-dark-200">
+          </p>
+          <div className="flex w-max items-center gap-1 rounded-full bg-dark-600 pr-2 text-[0.78rem] text-dark-200">
+            <div className="flex items-center justify-center rounded-full border-[1px] border-dark-400/50 bg-dark-500 p-1">
+              {song.is_playing ? (
+                <PlayIcon
+                  size={12}
+                  className="relative right-[-1px] text-[0.8rem] text-dark-300"
+                />
+              ) : (
+                <PauseIcon size={12} className="text-[0.8rem text-dark-300" />
+              )}
+            </div>
             {song.is_playing
               ? "Now playing"
               : timeAgo(song.last_played_timestamp)}
