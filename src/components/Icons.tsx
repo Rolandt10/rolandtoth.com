@@ -27,6 +27,23 @@ export const BookIcon = ({ size, ...props }) => {
   );
 };
 
+export const PlayIcon = ({ size, ...props }) => {
+  return (
+    <BaseIcon label="Play" size={size} {...props}>
+      <polygon points="5 3 19 12 5 21 5 3"></polygon>
+    </BaseIcon>
+  );
+};
+
+export const PauseIcon = ({ size, ...props }) => {
+  return (
+    <BaseIcon label="Pause" size={size} {...props}>
+      <rect x="6" y="4" width="4" height="16"></rect>
+      <rect x="14" y="4" width="4" height="16"></rect>
+    </BaseIcon>
+  );
+};
+
 export const MusicIcon = ({ size, ...props }) => {
   return (
     <BaseIcon label="Music" size={size} {...props}>
