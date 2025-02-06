@@ -82,24 +82,24 @@ export default function CurrentSong() {
 
   return (
     <>
-      <a href={song.external_url} className="shrink-0">
+      <a href={song.external_url} className="flex gap-4">
         <img
           className="h-16 w-16 rounded-md object-cover"
           src={song.album_cover}
           alt=""
         />
+        <div className="flex flex-col gap-1">
+          <div className="text-base leading-none">{song.song}</div>
+          <div className="text-wrap text-sm dark:text-dark-300">
+            {song.artists.join(", ")}
+          </div>
+          <div className="w-max rounded-full bg-dark-600 px-2 text-[0.8rem] text-dark-200">
+            {song.is_playing
+              ? "Now playing"
+              : timeAgo(song.last_played_timestamp)}
+          </div>
+        </div>
       </a>
-      <div className="flex flex-col gap-1">
-        <div className="text-base leading-none">{song.song}</div>
-        <div className="text-wrap text-sm dark:text-dark-300">
-          {song.artists.join(", ")}
-        </div>
-        <div className="w-max rounded-full bg-dark-600 px-2 text-[0.8rem] text-dark-200">
-          {song.is_playing
-            ? "Now playing"
-            : timeAgo(song.last_played_timestamp)}
-        </div>
-      </div>
     </>
   );
 }
