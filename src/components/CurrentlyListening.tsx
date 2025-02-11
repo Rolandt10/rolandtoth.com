@@ -84,7 +84,7 @@ export default function CurrentSong() {
     <>
       <a href={song.external_url} className="flex gap-4">
         <img
-          className="h-16 w-16 rounded-md object-cover"
+          className="h-[4.1343rem] w-[4.1343rem] rounded-md object-cover"
           src={song.album_cover}
           alt=""
         />
@@ -98,14 +98,14 @@ export default function CurrentSong() {
               {song.is_playing ? (
                 <PlayIcon
                   size={12}
-                  className="relative right-[-1px] text-[0.8rem] text-dark-300"
+                  className="relative right-[-1px] text-[0.8rem] text-dark-200"
                 />
               ) : (
-                <PauseIcon size={12} className="text-[0.8rem text-dark-300" />
+                <PauseIcon size={12} className="text-[0.8rem text-dark-200" />
               )}
             </div>
             {song.is_playing
-              ? "Now playing"
+              ? "Now playing..."
               : timeAgo(song.last_played_timestamp)}
           </div>
         </div>
