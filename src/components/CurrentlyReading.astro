@@ -28,10 +28,10 @@ try {
     ) : (
     book ? 
     <a href={book.externalUrl} class="flex gap-4">
-      <img class="w-16 rounded-md" src={book.bookCover} alt={book.bookTitle} />
+      <img class="w-[4.1343rem] rounded-md" src={book.bookCover} alt={book.bookTitle} />
       <div class="flex flex-col gap-1">
-        <span class="text-base leading-none">{book.bookTitle}</span>
-        <span class="text-sm dark:text-dark-300">{book.bookAuthors}</span>
+        <p class="text-base leading-none">{book.bookTitle}</p>
+        <p class="text-sm dark:text-dark-300">{book.bookAuthors}</p>
       </div>
     </a>
   :
