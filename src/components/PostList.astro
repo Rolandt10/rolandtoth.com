@@ -1,0 +1,19 @@
+---
+import { getCollection } from "astro:content";
+import PostListItem from "./PostListItem.astro";
+
+const allPosts = await getCollection("posts");
+---
+
+<ul>
+  {
+    allPosts.map((post) => (
+      <PostListItem
+        title={post.data.title}
+        publishDate={new Date(post.data.pubDate).toISOString().split("T")[0]}
+        timeToRead={post.data.minutesRead}
+        href={`/blog/${post.data.slug}`}
+      />
+    ))
+  }
+</ul>

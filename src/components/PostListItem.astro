@@ -7,7 +7,9 @@ const { title, timeToRead, publishDate, href } = Astro.props;
     href={href}
     class="relative flex items-baseline px-4 py-2 max-sm:flex max-sm:flex-col"
   >
-    <span class="text-base font-normal max-sm:mb-2">{title}</span>
+    <span class="text-base font-normal max-sm:mb-2 dark:text-dark-0"
+      >{title}</span
+    >
     <div
       class="ml-5 mr-[0.875rem] h-[1px] flex-grow self-center max-sm:hidden dark:bg-dark-600/75"
     >
@@ -17,7 +19,7 @@ const { title, timeToRead, publishDate, href } = Astro.props;
       >{publishDate}</time
     >
     <span
-      class="absolute right-4 translate-y-20 text-base delay-0 duration-500 group-hover:translate-y-[2px] group-hover:delay-700 max-sm:bottom-2 max-sm:translate-y-0 max-sm:group-hover:translate-y-0 dark:text-dark-300"
+      class="absolute right-4 translate-y-20 text-base delay-0 duration-500 group-hover:translate-y-[-1px] group-hover:delay-700 max-sm:bottom-2 max-sm:translate-y-0 max-sm:group-hover:translate-y-0 dark:text-dark-300"
     >
       {timeToRead} minutes
     </span>
