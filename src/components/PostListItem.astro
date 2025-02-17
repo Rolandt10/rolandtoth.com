@@ -1,13 +1,13 @@
 ---
-const { title, timeToRead, publishDate, href } = Astro.props;
+const { title, timeToRead, releaseDate, href } = Astro.props;
 ---
 
-<li class="group mx-[-1rem] overflow-hidden rounded-md dark:hover:bg-dark-700">
+<li class="group mx-[-1rem] overflow-hidden rounded-xl dark:hover:bg-dark-700">
   <a
     href={href}
     class="relative flex items-baseline px-4 py-2 max-sm:flex max-sm:flex-col"
   >
-    <span class="text-base font-normal max-sm:mb-2 dark:text-dark-0"
+    <span class="text-base font-normal max-sm:mb-2 dark:text-dark-0/90"
       >{title}</span
     >
     <div
@@ -16,7 +16,7 @@ const { title, timeToRead, publishDate, href } = Astro.props;
     </div>
     <time
       class="w-[5.25rem] text-end text-sm delay-0 duration-500 will-change-transform group-hover:-translate-y-10 group-hover:delay-700 max-sm:text-start max-sm:group-hover:translate-y-0 dark:text-dark-300"
-      >{publishDate}</time
+      >{releaseDate}</time
     >
     <span
       class="absolute right-4 translate-y-20 text-base delay-0 duration-500 group-hover:translate-y-[-1px] group-hover:delay-700 max-sm:bottom-2 max-sm:translate-y-0 max-sm:group-hover:translate-y-0 dark:text-dark-300"
