@@ -1,8 +1,8 @@
 ---
-layout: "../../layouts/BlogPostLayout.astro"
-title: "Lorem ipsum dolor sit amet"
-tags: ["etc"]
-pubDate: 2024-08-08
+title: "First blog post title"
+slug: "my-first-post"
+date: "2024-02-16"
+description: "This is an example post."
 ---
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur ut pellentesque mi. Duis sit amet pulvinar justo. Ut dictum velit ut lobortis vestibulum. Donec consectetur pulvinar leo, eu porta augue tincidunt eget. Fusce bibendum sagittis arcu. Cras sit amet nibh ut est commodo vulputate quis non tellus. Etiam molestie cursus ante eu vestibulum. Nullam commodo posuere libero, a gravida urna condimentum finibus. In vel feugiat nulla. Maecenas pharetra quis lectus id viverra.
