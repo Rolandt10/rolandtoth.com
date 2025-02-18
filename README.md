@@ -10,5 +10,4 @@ The website is hosted on AWS and utilizes several services, such as:
 - API Gateway
 - Secrets Manager
 - CloudFront
-- Certificate Manager
 
