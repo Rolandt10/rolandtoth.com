@@ -128,3 +128,6 @@ dist
 .yarn/build-state.yml
 .yarn/install-state.gz
 .pnp.*
+
+# Prevent merging CI config from dev branch
+.github/workflows/dev-ci.yml
