@@ -7,11 +7,14 @@ export default [
     ignores: ["node_modules/", "dist/", "public/"],
     plugins: { astro, prettier },
     languageOptions: {
-      parserOptions: { ecmaVersion: "latest", sourceType: "module" },
+      parser: "astro-eslint-parser",
+      parserOptions: {
+        parser: "@typescript-eslint/parser",
+        extraFileExtensions: [".astro"],
+        ecmaVersion: 2021,
+        sourceType: "module",
+      },
     },
-    rules: {
-      ...astro.configs.recommended.rules, // Astro recommended rules
-      "prettier/prettier": "error", // Enforce Prettier formatting
-    },
+    rules: { ...astro.configs.recommended.rules, "prettier/prettier": "error" },
   },
 ];
