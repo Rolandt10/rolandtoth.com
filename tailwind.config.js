@@ -1,4 +1,3 @@
-/** @type {import('tailwindcss').Config} */
 export default {
   content: ["./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}"],
   theme: {
@@ -34,9 +33,7 @@ export default {
       "4xl": "1.29375rem",
       "5xl": "1.38125rem",
     },
-    fontFamily: {
-      inter: "Inter, system-ui, sans-serif",
-    },
+    fontFamily: { inter: ["Inter", "system-ui", "sans-serif"] },
   },
   plugins: [],
 };
