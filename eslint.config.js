@@ -1,13 +1,14 @@
 import astro from "eslint-plugin-astro";
 import prettier from "eslint-plugin-prettier";
+import astroParser from "astro-eslint-parser";
 
 export default [
   {
     files: ["**/*.js", "**/*.ts", "**/*.astro"],
-    ignores: ["node_modules/", "dist/", "public/"],
+    ignores: ["**/*.astro", "node_modules/", "dist/", "public/"],
     plugins: { astro, prettier },
     languageOptions: {
-      parser: "astro-eslint-parser",
+      parser: astroParser,
       parserOptions: {
         parser: "@typescript-eslint/parser",
         extraFileExtensions: [".astro"],
