@@ -8,7 +8,6 @@ The website is hosted on AWS and utilizes several services, such as:
 - Lambda
 - EventBridge Scheduler
 - API Gateway
-- Secrets Manager
 - CloudFront
 - Simple Queue Service
 
