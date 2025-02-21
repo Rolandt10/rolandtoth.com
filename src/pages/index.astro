@@ -2,7 +2,6 @@
 import CurrentlyListening from "../components/CurrentlyListening";
 import CurrentlyReading from "../components/CurrentlyReading.astro";
 import PostList from "../components/PostList.astro";
-import PostListItem from "../components/PostListItem.astro";
 import IndexSectionLayout from "../layouts/IndexSectionLayout.astro";
 import Layout from "../layouts/Layout.astro";
 import TrackerLayout from "../layouts/TrackerLayout.astro";
@@ -30,7 +29,7 @@ import TrackerLayout from "../layouts/TrackerLayout.astro";
       of Technology and Economics. I’ve worked on various projects, including an
       internship at <a
         class="underline dark:text-dark-100"
-        href="https://www.audi.hu/">Audi</a
+        href="https://www.audi.hu/en/">Audi</a
       >, where I gained practical experience in software development.
     </p>
     <p>
@@ -49,7 +48,10 @@ import TrackerLayout from "../layouts/TrackerLayout.astro";
       class="mb-24 flex items-baseline justify-between border-b dark:border-b-dark-500/75"
     >
       <h2 class="pb-3 text-lg text-light-600 dark:text-dark-0">Latest posts</h2>
-      <a href="#" class="flex items-center gap-1 text-xsm dark:text-dark-200">
+      <a
+        href="rss.xml"
+        class="flex items-center gap-1 text-xsm dark:text-dark-200"
+      >
         <!-- <RSSIcon size={16} /> -->
         <span
           class="relative after:absolute after:bottom-0 after:left-0 after:h-[1px] after:w-full after:bg-dark-400 after:transition-colors after:hover:bg-dark-300/90"
