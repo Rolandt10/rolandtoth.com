@@ -1,5 +1,6 @@
 ---
 import { ViewTransitions } from "astro:transitions";
+import ResizeHandler from "../components/ResizeHandler.astro";
 interface Props {
   title: string;
 }
@@ -32,27 +33,8 @@ const { title } = Astro.props;
   </head>
   <body class="mx-6 mt-14 h-full font-inter text-base">
     <slot />
-  </body>
+  </body><ResizeHandler />
 </html>
-<script>
-  (function () {
-    const classes = document.body.classList;
-    let timer: number | NodeJS.Timeout = 0;
-    window.addEventListener("resize", function () {
-      if (timer) {
-        clearTimeout(timer);
-        timer = null;
-      } else {
-        classes.add("stop-transitions");
-      }
-
-      timer = setTimeout(() => {
-        classes.remove("stop-transitions");
-        timer = null;
-      }, 100);
-    });
-  })();
-</script>
 <style is:global>
   [cmdk-overlay] {
     @apply bg-light-600/20 dark:bg-dark-600/60;
