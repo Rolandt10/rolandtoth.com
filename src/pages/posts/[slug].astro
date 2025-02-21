@@ -10,22 +10,29 @@ if (!post) {
   throw new Error(`Post not found: ${slug}`);
 }
 
+const [year, month, day] = new Date(post.data.date)
+  .toISOString()
+  .split("T")[0]
+  .split("-");
+
 const { Content } = await post.render();
 ---
 
 <Layout>
   <h1 class="my-36 text-xl dark:text-dark-0">{post.data.title}</h1>
+  <time
+    datetime=""
+    class="mb-16 w-max rounded-full border px-3 py-1 text-xsm dark:border-dark-500"
+    >{year} / {month} / {day}</time
+  >
   <article class="markdown-content">
     <Content />
   </article>
   <div class="my-24 flex justify-between">
     <a
       href="/posts"
-      class="w-max rounded-full border border-dark-500 px-3 py-1 text-sm hover:dark:border-dark-400/50"
+      class="w-max rounded-full border border-dark-500 px-3 py-1 text-xsm hover:dark:border-dark-400/50"
       >&leftarrow; Back to posts</a
     >
-    <span class="text-sm">
-      Published on <time datetime="">{post.data.date}</time>
-    </span>
   </div>
 </Layout>
