@@ -1,6 +1,6 @@
 ---
 title: "Second blog post title"
-slug: "my-first-post"
+slug: "my-second-post"
 date: "2024-02-16"
 description: "This is an example post."
 ---
