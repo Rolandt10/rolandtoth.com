@@ -1,8 +1,14 @@
 ---
 import { getCollection } from "astro:content";
 import PostListItem from "./PostListItem.astro";
+import readingTime from "reading-time";
 
 const posts = await getCollection("posts");
+
+posts.forEach((post) => {
+  post.readTime = Math.round(readingTime(post.body).minutes);
+});
+
 console.log(posts);
 ---
 
@@ -13,7 +19,7 @@ console.log(posts);
         title={post.data.title}
         href={`/posts/${post.slug}`}
         releaseDate={new Date(post.data.date).toISOString().split("T")[0]}
-        timeToRead={post.data.minutesRead}
+        timeToRead={post.readTime}
       />
     ))
   }
