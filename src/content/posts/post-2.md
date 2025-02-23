@@ -1,7 +1,7 @@
 ---
 title: "Second blog post title"
 slug: "my-second-post"
-date: "2024-02-16"
+date: "2025-01-16"
 description: "This is an example post."
 ---
 

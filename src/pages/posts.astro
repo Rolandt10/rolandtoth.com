@@ -1,11 +1,48 @@
 ---
+import PostListItem from "../components/PostListItem.astro";
 import Layout from "../layouts/Layout.astro";
+import { getCollection } from "astro:content";
+
+const posts = await getCollection("posts");
+
+// Group posts by year
+const postsGroupedByYear = new Map();
+
+posts.forEach((post) => {
+  const year = new Date(post.data.date).getFullYear();
+  if (!postsGroupedByYear.has(year)) {
+    postsGroupedByYear.set(year, [post]);
+  } else {
+    postsGroupedByYear.get(year).push(post);
+  }
+});
+
+const processedArray = Array.from(postsGroupedByYear.entries()).sort(
+  (a, b) => b[0] - a[0],
+);
 ---
 
 <Layout title="Roland Tóth">
-  <main class="[grid-area:main]">
-    <h1 class="my-36 text-xl font-medium text-light-600 dark:text-dark-0">
-      Posts
-    </h1>
+  <main class="mb-24 [grid-area:main]">
+    <h1 class="my-36 text-xl text-light-600 dark:text-dark-0">Posts</h1>
+    {
+      processedArray.map(([year, posts]) => (
+        <section class="mb-24 last:mb-0">
+          <h2 class="mb-10 mt-8 text-lg dark:text-dark-0">{year}</h2>
+          <ul>
+            {posts.map((post) => (
+              <li>
+                <PostListItem
+                  title={post.data.title}
+                  releaseDate={post.data.date}
+                  timeToRead={post.readTime}
+                  href={`/posts/${post.slug}`}
+                />
+              </li>
+            ))}
+          </ul>
+        </section>
+      ))
+    }
   </main>
 </Layout>
