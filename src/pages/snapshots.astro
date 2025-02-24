@@ -1,11 +1,15 @@
 ---
+import Gallery from "../components/Gallery.tsx";
 import Layout from "../layouts/Layout.astro";
 ---
 
-<Layout title="Roland Tóth">
-  <main class="[grid-area:main]">
-    <h1 class="my-36 text-xl font-medium text-light-600 dark:text-dark-0">
+<Layout title="Snapshots" mainfullspan={true}>
+  <div class="mb-24">
+    <h1
+      class="mx-auto my-36 max-w-[min(620px,100%)] text-xl text-light-600 dark:text-dark-0"
+    >
       Snapshots
     </h1>
-  </main>
+    <Gallery client:load />
+  </div>
 </Layout>
