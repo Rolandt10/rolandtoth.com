@@ -1,26 +1,28 @@
 ---
-import { getCollection } from "astro:content";
 import PostListItem from "./PostListItem.astro";
-import readingTime from "reading-time";
+import PostsProcessor from "../utils/PostsProcessor.ts";
+import { getCollection } from "astro:content";
 
 const posts = await getCollection("posts");
-
-posts.forEach((post) => {
-  post.readTime = Math.round(readingTime(post.body).minutes);
-});
-
-console.log(posts);
+const processedPosts = new PostsProcessor(posts).processPosts();
+console.log(processedPosts);
 ---
 
 <ul>
   {
-    posts.map((post) => (
-      <PostListItem
-        title={post.data.title}
-        href={`/posts/${post.slug}`}
-        releaseDate={new Date(post.data.date).toISOString().split("T")[0]}
-        timeToRead={post.readTime}
-      />
+    processedPosts.map(([_, posts]) => (
+      <ul>
+        {posts.map((post) => (
+          <li>
+            <PostListItem
+              title={post.data.title}
+              releaseDate={post.data.date}
+              timeToRead={post.readTime}
+              href={`/posts/${post.slug}`}
+            />
+          </li>
+        ))}
+      </ul>
     ))
   }
 </ul>
