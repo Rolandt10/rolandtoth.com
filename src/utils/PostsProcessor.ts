@@ -12,8 +12,6 @@ class PostsProcessor {
       ...post,
       readTime: Math.round(readingTime(post.body).minutes),
     }));
-
-    return this;
   }
 
   private groupPostsByYear() {
@@ -29,24 +27,19 @@ class PostsProcessor {
     });
 
     this.posts = postsGroupedByYear;
-    return this;
   }
 
   private sortPostsByYearDescending() {
     this.posts = Array.from(this.posts.entries()).sort((a, b) => b[0] - a[0]);
-    return this;
-  }
-
-  public get() {
-    return this.posts;
   }
 
   public processPosts() {
     try {
-      return this.addReadTimeToPosts()
-        .groupPostsByYear()
-        .sortPostsByYearDescending()
-        .get();
+      this.addReadTimeToPosts();
+      this.groupPostsByYear();
+      this.sortPostsByYearDescending();
+
+      return this.posts;
     } catch (error) {
       console.error("Failed to process posts", error);
       throw new Error("Failed to process posts.");
