@@ -55,7 +55,7 @@ export default function CurrentSong() {
     };
 
     fetchSong();
-    const interval = setInterval(fetchSong, 30000);
+    const interval = setInterval(fetchSong, 10000);
 
     return () => clearInterval(interval);
   }, []);
