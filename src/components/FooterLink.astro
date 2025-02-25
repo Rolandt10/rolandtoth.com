@@ -1,8 +1,8 @@
 ---
-const { href, title } = Astro.props;
+const { href } = Astro.props;
 ---
 
 <a
   class="text-light-500/80 transition-colors duration-200 hover:text-light-600 dark:text-dark-200 dark:hover:text-dark-100"
-  href={href}>{title}</a
+  href={href}><slot /></a
 >
