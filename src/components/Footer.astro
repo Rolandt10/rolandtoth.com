@@ -1,53 +1,39 @@
+---
+import FooterLink from "./FooterLink.astro";
+---
+
 <footer
   class="flex flex-wrap border-t border-dashed border-light-300 py-20 [grid-area:footer] dark:border-dark-500/75"
 >
-  <div class="flex w-1/2 flex-col text-light-500/80 dark:text-dark-200">
+  <div class="flex w-1/2 flex-col">
     <span class="mb-8 text-light-600 dark:text-dark-0">Browse</span>
     <ul>
       <li class="mb-3 w-max">
-        <a
-          class="transition-colors duration-200 hover:text-light-600 dark:hover:text-dark-100"
-          href="snapshots">Snapshots</a
-        >
+        <FooterLink href="snapshots" title="Snapshots" />
       </li>
       <li class="mb-3 w-max">
-        <a
-          class="transition-colors duration-200 hover:text-light-600 dark:hover:text-dark-100"
-          href="posts">Posts</a
-        >
+        <FooterLink href="posts" title="Posts" />
       </li>
     </ul>
   </div>
-  <div class="flex w-1/2 flex-col text-light-500/80 dark:text-dark-200">
+  <div class="flex w-1/2 flex-col">
     <span class="mb-8 text-light-600 dark:text-dark-0">Contact</span>
-    <ul class="[&>li]:mb-3 [&>li]:w-max">
+    <ul>
       <li class="mb-3 w-max">
-        <a
-          href="https://x.com/rlndtth"
-          class="transition-colors duration-200 hover:text-light-600 dark:hover:text-dark-100"
-          >Twitter / X</a
-        >
+        <FooterLink href="https://x.com/rlndtth" title="Twitter / X" />
       </li>
-      <li class="mb-3 w-max transition-colors duration-200">
-        <a
-          href="mailto:hi@rolandtoth.com"
-          class="transition-colors duration-200 hover:text-light-600 dark:hover:text-dark-100"
-          >E-mail</a
-        >
+      <li class="mb-3 w-max">
+        <FooterLink href="mailto:hi@rolandtoth.com" title="E-mail" />
       </li>
     </ul>
   </div>
   <div
     class="mt-16 flex w-full gap-4 text-xsm text-light-500/80 dark:text-dark-200"
   >
-    <a
-      class="duration-20 transition-colors hover:text-light-600 dark:hover:text-dark-100"
-      href="https://github.com/Rolandt10/rolandtoth.com">GitHub</a
-    >
-
-    <a
-      class="duration-20 transition-colors hover:text-light-600 dark:hover:text-dark-100"
-      href="colophon">Colophon</a
-    >
+    <FooterLink
+      href="https://github.com/Rolandt10/rolandtoth.com"
+      title="GitHub"
+    />
+    <FooterLink href="colophon" title="Colophon" />
   </div>
 </footer>
