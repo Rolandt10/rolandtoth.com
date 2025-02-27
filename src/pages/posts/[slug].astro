@@ -1,6 +1,6 @@
 ---
 import { getCollection } from "astro:content";
-import Layout from "../../layouts/Layout.astro";
+import Main from "../../layouts/Main.astro";
 
 const posts = await getCollection("posts");
 const { slug } = Astro.params;
@@ -18,7 +18,7 @@ const [year, month, day] = new Date(post.data.date)
 const { Content } = await post.render();
 ---
 
-<Layout>
+<Main>
   <h1 class="my-36 text-xl dark:text-dark-0">{post.data.title}</h1>
   <time
     datetime=""
@@ -35,4 +35,4 @@ const { Content } = await post.render();
       >&leftarrow; Back to posts</a
     >
   </div>
-</Layout>
+</Main>

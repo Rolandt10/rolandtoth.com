@@ -1,0 +1,23 @@
+---
+import TrackerLayout from "../../layouts/TrackerLayout.astro";
+import CurrentlyListening from "../CurrentlyListening";
+import CurrentlyReading from "../CurrentlyReading.astro";
+---
+
+<section class="mb-24">
+  <h2
+    class="mb-24 border-b pb-3 text-lg text-light-600 dark:border-b-dark-500/75 dark:text-dark-0"
+  >
+    Trackers
+  </h2>
+  <div class="mb-20 flex max-sm:flex-col">
+    <TrackerLayout title="Reading">
+      <CurrentlyReading />
+    </TrackerLayout>
+  </div>
+  <div class="flex max-sm:flex-col">
+    <TrackerLayout title="Listening">
+      <CurrentlyListening client:load />
+    </TrackerLayout>
+  </div>
+</section>

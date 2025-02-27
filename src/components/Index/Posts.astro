@@ -1,0 +1,21 @@
+---
+import PostList from "../PostList.astro";
+---
+
+<section class="pb-24">
+  <header
+    class="mb-24 flex items-baseline justify-between border-b dark:border-b-dark-500/75"
+  >
+    <h2 class="pb-3 text-lg text-light-600 dark:text-dark-0">Latest posts</h2>
+    <a
+      href="rss.xml"
+      class="flex items-center gap-1 text-xsm dark:text-dark-200"
+    >
+      <span
+        class="relative after:absolute after:bottom-0 after:left-0 after:h-[1px] after:w-full after:bg-dark-400 after:transition-colors after:hover:bg-dark-300/90"
+        >RSS</span
+      ></a
+    >
+  </header>
+  <PostList />
+</section>

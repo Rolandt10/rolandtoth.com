@@ -1,14 +1,14 @@
 ---
 import { getCollection } from "astro:content";
 import PostListItem from "../components/PostListItem.astro";
-import Layout from "../layouts/Layout.astro";
 import PostsProcessor from "../utils/PostsProcessor.ts";
+import Main from "../layouts/Main.astro";
 
 const posts = await getCollection("posts");
 const processedPosts = new PostsProcessor(posts).processPosts();
 ---
 
-<Layout title="Posts">
+<Main title="Posts">
   <main class="mb-24 [grid-area:main]">
     <h1 class="my-36 text-xl text-light-600 dark:text-dark-0">Posts</h1>
     {
@@ -31,4 +31,4 @@ const processedPosts = new PostsProcessor(posts).processPosts();
       ))
     }
   </main>
-</Layout>
+</Main>

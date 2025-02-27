@@ -1,7 +1,6 @@
 import { useState } from "react";
 import CommandMenu from "./CommandMenu";
 import { HomeIcon, MenuIcon } from "../Icons";
-import ThemeToggle from "./ThemeToggle";
 
 const Header = ({ currentPath }) => {
   const [isOpen, setIsOpen] = useState(false);

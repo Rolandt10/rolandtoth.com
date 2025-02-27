@@ -3,7 +3,7 @@ import Footer from "../components/Footer.astro";
 import Header from "../components/Header/Header";
 import BaseLayout from "./BaseLayout.astro";
 
-const { title, mainfullspan } = Astro.props;
+const { title, isFullSpan } = Astro.props;
 ---
 
 <BaseLayout title={title}>
@@ -12,7 +12,7 @@ const { title, mainfullspan } = Astro.props;
   >
     <Header client:load currentPath={Astro.url.pathname} />
     <main
-      class=`flex flex-col justify-center ${mainfullspan || "[grid-area:main]"} ${mainfullspan && "col-span-full"}`
+      class=`flex flex-col justify-center ${isFullSpan || "[grid-area:main]"} ${isFullSpan && "col-span-full"}`
     >
       <slot />
     </main>
