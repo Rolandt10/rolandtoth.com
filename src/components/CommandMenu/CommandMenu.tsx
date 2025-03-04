@@ -8,7 +8,7 @@ import {
   HomeIcon,
   SearchIcon,
   TwitterIcon,
-} from "../Icons";
+} from "../Icons/Icons";
 import { AnimatePresence, motion } from "framer-motion";
 
 const CommandMenu = ({ isOpen, setIsOpen }) => {

@@ -1,7 +1,7 @@
 // src/tests/Footer.test.ts
 import { experimental_AstroContainer as AstroContainer } from "astro/container";
 import { expect, test } from "vitest";
-import Footer from "../components/Footer.astro"; // Adjust the path if needed
+import Footer from "../components/Footer/Footer.astro"; // Adjust the path if needed
 
 test("Footer renders correctly", async () => {
   const container = await AstroContainer.create();

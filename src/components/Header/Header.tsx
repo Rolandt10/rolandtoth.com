@@ -1,6 +1,6 @@
 import { useState } from "react";
-import CommandMenu from "./CommandMenu";
-import { HomeIcon, MenuIcon } from "../Icons";
+import CommandMenu from "../CommandMenu/CommandMenu";
+import { HomeIcon, MenuIcon } from "../Icons/Icons";
 
 const Header = ({ currentPath }) => {
   const [isOpen, setIsOpen] = useState(false);

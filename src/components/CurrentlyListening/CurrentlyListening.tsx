@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { MusicIcon, PauseIcon, PlayIcon } from "./Icons";
+import { MusicIcon, PauseIcon, PlayIcon } from "../Icons/Icons.tsx";
 
 const API_URL =
   "https://adovd1cm2g.execute-api.us-east-1.amazonaws.com/production/currently-playing";

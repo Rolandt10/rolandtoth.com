@@ -1,6 +1,6 @@
 ---
 import PostListItem from "./PostListItem.astro";
-import PostsProcessor from "../utils/PostsProcessor.ts";
+import PostsProcessor from "../../utils/PostsProcessor.ts";
 import { getCollection } from "astro:content";
 
 const posts = await getCollection("posts");
