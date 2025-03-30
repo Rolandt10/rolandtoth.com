@@ -2,7 +2,7 @@
 import { BookIcon } from "../Icons/Icons.tsx";
 
 const API_URL =
-  "https://adovd1cm2g.execute-api.us-east-1.amazonaws.com/production/currently-reading";
+  "https://za0j0wwqi3.execute-api.us-east-1.amazonaws.com/prod/currently-reading";
 
 let book = null;
 let errorMessage = null;
@@ -29,10 +29,10 @@ try {
       ) : (
         book ? 
         <a href={book.externalUrl} class="flex gap-4">
-        <img class="w-[4.1343rem] rounded-md" src={book.bookCover} alt={book.bookTitle} />
+        <img class="w-[4.1343rem] rounded-md shadow-md" src={book.bookCover} alt={book.bookTitle} />
         <div class="flex flex-col gap-1">
           <p class="text-base leading-none">{book.bookTitle}</p>
-          <p class="text-sm dark:text-dark-300">{book.bookAuthors}</p>
+          <p class="text-sm dark:text-dark-300 text-light-400">{book.bookAuthors}</p>
         </div>
       </a>
     :
