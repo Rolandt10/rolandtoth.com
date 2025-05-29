@@ -5,8 +5,8 @@ import { mdxStyles } from "../../components/MdxComponents/MdxStyles";
 import { CalendarIcon, ClockIcon } from "../../components/Icons/Icons";
 import PostsProcessor from "../../utils/PostsProcessor";
 import ShareButtons from "../../components/ShareButtons/ShareButtons";
-import TermsSection from "../../components/TermsSection/TermsSection";
 import CommentEditor from "../../components/CommentEditor/CommentEditor";
+import TermsSection from "../../components/TermsSection/TermsSection";
 
 const { slug } = Astro.params;
 const posts = await getCollection("posts");
@@ -75,7 +75,7 @@ export async function getStaticPaths() {
   </div>
 
   <CommentEditor client:only="react" />
-  <TermsSection client:only="react" />
+  <TermsSection client:load />
   <hr class="mb-11 h-[1px] border-0 dark:bg-dark-400/60" />
   <div>Comments</div>
 </Main>
