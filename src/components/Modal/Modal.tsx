@@ -22,7 +22,7 @@ export default function Modal({ title, trigger, children }: Props) {
           <Dialog.Close asChild>
             <button
               aria-label="Close"
-              className="absolute right-4 top-5 text-2xl text-gray-600 hover:text-black"
+              className="absolute right-4 top-3 text-2xl text-gray-600 hover:text-black"
             >
               &times;
             </button>
