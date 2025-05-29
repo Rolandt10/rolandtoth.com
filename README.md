@@ -1,21 +1,10 @@
-**rolandtoth.com**
----
-Some stuff that I dare to share on the internet. [Take a look.](https://rolandtoth.com)
+# **rolandtoth.com**
 
-The website is hosted on AWS and utilizes several services, such as:
-- DynamoDB
-- S3
-- Lambda
-- EventBridge Scheduler
-- API Gateway
-- CloudFront
-- Simple Queue Service
+Some stuff that I dare to share on the internet.  
+[Take a look](https://rolandtoth.com)
 
-**Getting "real time" data from Spotify**
----
+## Documentation
 
-<img width="829" alt="kép" src="https://github.com/user-attachments/assets/ffc66c40-76db-4d6e-a24c-88c834276530" />
+This repository primarily contains the **frontend** of the website. Frontend stack: **Astro**, **React**, **Tailwind CSS**, **TypeScript**, **Vite**, **ESLint**.
 
-- since EventBridge Scheduler doesn't allow schedules below 1 minute, I use SQS to get the song data every 20s (which turns out to be cheaper than Step Functions)
-- DynamoDB helps with decoupling the client from the Spotify API, so there is no 429 (too many requests)
-
+The **backend** tasks—such as image processing, and comment handling—are managed through **AWS services**, including **Lambda**, **S3**, **DynamoDB**, **API Gateway**, **CloudFront**, and **SQS**.
