@@ -36,7 +36,7 @@ This feature uses polling to retrieve the currently playing song from Spotify â€
 
 ### Image handling
 
-You can check out how I upload and optimize images from my phone to my website in [this blog post](https://www.rolandtoth.com/posts/my-first-post/).
+You can check out how I upload and optimize images from my phone to my website in [this blog post](https://www.rolandtoth.com/posts/building-an-image-pipeline/).
 
 | Function Name                  | Purpose                                            |
 |-------------------------------|----------------------------------------------------|
