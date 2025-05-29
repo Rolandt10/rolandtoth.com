@@ -48,6 +48,8 @@ You can check out how I upload and optimize images from my phone to my website i
 
 ### Comment handling
 
+In order to comment, the user needs to be identified using OAuth (Google or GitHub), which is handled through Firebase Authentication. When I was starting out, I wasn’t planning to have a comment section for each blog post — the website was designed to be completely static and is hosted on S3 with no traditional backend. That’s why I use Firebase: it provides an easy way to authenticate users directly from the frontend without setting up a custom backend infrastructure.
+
 ## Design
 
 The website was designed in Figma, following a [WCAG-compliant](https://www.w3.org/WAI/standards-guidelines/wcag/) color palette for both dark and light themes, along with a consistent typography scale (Inter). I also applied some of my own design sensibilities; whether they’re good or bad, I’ll let you be the judge. You can check the design files [here](https://www.figma.com/design/uN7ncqyoQQMpBwUdcjaU6n/Blog?node-id=479-622&t=QHzpassO4leYD4Qt-1).
