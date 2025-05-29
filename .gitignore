@@ -129,5 +129,7 @@ dist
 .yarn/install-state.gz
 .pnp.*
 
+.DS_Store
+
 # Prevent merging CI config from dev branch
 .github/workflows/dev-ci.yml

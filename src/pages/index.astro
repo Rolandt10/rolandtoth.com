@@ -1,40 +1,12 @@
 ---
-import Layout from "../layouts/Layout.astro";
+import Introduction from "../components/Index/Introduction.astro";
+import Posts from "../components/Index/Posts.astro";
+import Trackers from "../components/Index/Trackers.astro";
+import Main from "../layouts/Main.astro";
 ---
 
-<Layout title="Roland Tóth">
-  <main>
-    <h1>Something is happening...</h1>
-    <img
-      alt="Granny smashing the keyboard of a Commodore PET computer"
-      src="https://i.giphy.com/media/v1.Y2lkPTc5MGI3NjExOXpvNWV2b3VwOGYwaWVuYW5jOXdwMXV0eG9lcDNnMXc4MGY4ZHN5ZSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/7hJZcKzjIufeOmqKSj/giphy.gif"
-    />
-  </main>
-</Layout>
-
-<style>
-  main {
-    margin: auto;
-    padding: 1rem;
-    width: 800px;
-    max-width: calc(100% - 2rem);
-    color: white;
-    font-size: 16px;
-    line-height: 1.6;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  img {
-    border-radius: 16px;
-    max-width: 30rem;
-    width: 100%;
-  }
-  h1 {
-    font-size: 1.4rem;
-    font-weight: 500;
-    line-height: 1;
-    text-align: center;
-    margin-bottom: 2rem;
-  }
-</style>
+<Main title="Roland Tóth">
+  <Introduction />
+  <Posts />
+  <Trackers />
+</Main>

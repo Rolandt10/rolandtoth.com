@@ -1,0 +1,38 @@
+---
+title: "Building an image pipeline for my website"
+slug: "my-first-post"
+date: "2024-02-16"
+description: "This is an example post."
+---
+
+import ImageModal from "../../components/MdxComponents/ImageModal.astro";
+import Resources from "../../components/MdxComponents/Resources.astro";
+
+# Heading 1
+
+If you've been exploring my website, you might have come across my snapshots page where I share some of my favourite images. At first glance it might look simple (well, indeed it is on the outside), however there is much more to it behind the scenes.
+
+I've always wanted to create some kind of space where I can share my photos, since I don't use Instagram or many of the mainstream social media platforms.
+
+<ImageModal
+  src="/posts/image-pipeline.png"
+  alt="A graph showing my image pipeline integration"
+  caption="An overview of the image processing from start to end"
+/>
+
+I've always wanted to create some kind of space where I can share my photos, since I don't use Instagram or many of the mainstream social media platforms.
+
+<Resources
+  items={[
+    {
+      author: "Addy Osmani",
+      title: "Image Optimization",
+      url: "https://store.addy.ie/product/image-optimization/",
+    },
+    {
+      author: "Achraf Souk",
+      title: "Image Optimization using Amazon CloudFront and AWS Lambda",
+      url: "https://aws.amazon.com/blogs/networking-and-content-delivery/image-optimization-using-amazon-cloudfront-and-aws-lambda/",
+    },
+  ]}
+/>

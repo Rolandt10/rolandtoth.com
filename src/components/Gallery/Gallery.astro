@@ -1,0 +1,35 @@
+---
+import GalleryClient from "./GalleryClient.jsx";
+
+const API_URL =
+  "https://za0j0wwqi3.execute-api.us-east-1.amazonaws.com/prod/images";
+
+const response = await fetch(API_URL);
+const data = await response.json();
+---
+
+<div
+  id="gallery--individual"
+  class="mx-auto flex w-full max-w-[1500px] flex-wrap justify-center gap-6"
+>
+  {
+    data.map((image) => (
+      <a
+        href={image.formats.avif.fullImage["2x"]}
+        data-pswp-width={image.formats.avif.fullImage.width}
+        data-pswp-height={image.formats.avif.fullImage.height}
+        class="flex h-[13.5rem] w-[13.5rem] cursor-zoom-in rounded-lg border border-solid border-light-400/20 bg-light-200 p-7 transition duration-200 hover:border-light-400/40 max-sm:aspect-square max-sm:h-auto max-sm:min-w-[calc(50%-1rem)] max-sm:max-w-[calc(50%-1rem)] max-sm:flex-1 max-sm:p-4 dark:border-dark-500/50 dark:bg-dark-700/70 dark:hover:border-dark-400/30"
+      >
+        <img
+          class="img-responsive m-auto max-h-full max-w-full rounded-md"
+          src={image.formats.avif.thumbnail["1x"]}
+          srcset={`${image.formats.avif.thumbnail["1x"]} 158w,
+          ${image.formats.avif.thumbnail["2x"]} 316w`}
+          sizes="(max-width: 768px) 158px, 316px"
+          alt={image.name}
+        />
+      </a>
+    ))
+  }
+</div>
+<GalleryClient client:load />

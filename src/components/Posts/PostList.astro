@@ -1,0 +1,28 @@
+---
+import PostListItem from "./PostListItem.astro";
+import PostsProcessor from "../../utils/PostsProcessor.ts";
+import { getCollection } from "astro:content";
+
+const posts = await getCollection("posts");
+const processedPosts = new PostsProcessor(posts).processPosts();
+console.log(processedPosts);
+---
+
+{
+  (
+    <ul>
+      {processedPosts.map(([_, posts]) =>
+        posts.map((post) => (
+          <li>
+            <PostListItem
+              title={post.data.title}
+              releaseDate={post.data.date}
+              timeToRead={post.readTime}
+              href={`/posts/${post.slug}`}
+            />
+          </li>
+        )),
+      )}
+    </ul>
+  )
+}

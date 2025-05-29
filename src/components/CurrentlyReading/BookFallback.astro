@@ -1,0 +1,13 @@
+---
+import { BookIcon } from "../Icons/Icons.tsx";
+const { message = "Currently not reading anything" } = Astro.props;
+---
+
+<div
+  class="flex h-[6rem] w-16 items-center justify-center rounded-md border border-dark-600 dark:bg-dark-700"
+>
+  <BookIcon size={24} stroke-width="1.6" class="dark:text-dark-300" />
+</div>
+<div class="flex flex-col gap-1">
+  <p class="leading-none">{message}</p>
+</div>

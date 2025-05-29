@@ -1,0 +1,182 @@
+---
+import ResizeHandler from "../components/ResizeHandler/ResizeHandler.astro";
+interface Props {
+  title: string;
+}
+
+const { title } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en" class="h-full bg-light-100 dark:bg-dark-800 dark:text-dark-100">
+  <head>
+    <style>
+      @font-face {
+        font-family: "Inter";
+        font-style: normal;
+        font-weight: 300 900;
+        font-display: fallback;
+        src: url("/fonts/Inter-optimized.woff2") format("woff2");
+      }
+    </style>
+    <meta charset="UTF-8" />
+    <meta name="description" content="Astro description" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+  </head>
+  <body class="mx-6 mt-14 h-full font-inter text-base" id="astro-root">
+    <slot />
+  </body><ResizeHandler />
+</html>
+<style is:global>
+  [cmdk-overlay] {
+    @apply bg-light-600/20 dark:bg-dark-600/40;
+    @apply fixed left-0 top-0;
+    @apply h-full w-full;
+    @apply z-20;
+  }
+
+  [cmdk-dialog] {
+    @apply absolute left-2/4 top-2/4 ml-2 -translate-x-2/4 -translate-y-2/4;
+    @apply border border-light-400/25 dark:border-dark-400/30;
+    @apply rounded-xl;
+    @apply w-full max-w-sm;
+    @apply shadow-md;
+    @apply px-5 pb-2 pt-5;
+    @apply font-inter;
+    @apply bg-light-100 dark:bg-dark-600;
+    @apply z-30;
+  }
+
+  [cmdk-input] {
+    @apply w-full;
+    @apply bg-[transparent];
+    @apply outline-none;
+    @apply placeholder:text-light-400/65 dark:text-dark-100 dark:placeholder:text-dark-300/90;
+  }
+
+  [cmdk-group] {
+    @apply mt-5;
+  }
+
+  [cmdk-group-heading] {
+    @apply text-xsm;
+    @apply font-normal;
+    @apply text-light-400 dark:text-dark-100;
+    @apply mb-1;
+  }
+
+  [cmdk-group-items] {
+    @apply flex flex-col;
+  }
+
+  [cmdk-item] a {
+    @apply flex items-center gap-3;
+    @apply text-base;
+    @apply font-normal;
+    @apply text-light-500 dark:text-dark-200;
+    @apply cursor-pointer;
+    @apply py-2;
+    @apply -mx-3;
+    @apply px-3;
+  }
+
+  [cmdk-item] a:hover {
+    @apply bg-light-300/45 dark:bg-dark-500;
+    @apply rounded-md dark:text-dark-100;
+    @apply -mx-3;
+    @apply px-3;
+  }
+
+  .markdown-content p:not(:last-child) {
+    margin-bottom: 2rem;
+  }
+
+  .markdown-content p {
+    line-height: 1.6;
+  }
+
+  body.stop-transitions * {
+    transition: none !important;
+  }
+
+  .pswp__counter {
+    color: #d2d6da;
+    background-color: #1c1f22;
+    border-radius: 16px;
+    padding-inline: 12px;
+  }
+
+  .ql-editor {
+    padding: 1rem;
+    font-size: 1rem;
+    background-color: #f9f9f9;
+    border-radius: 12px;
+    line-height: 1.8;
+    font-family: "Segoe UI", sans-serif;
+    min-height: 150px;
+    overflow-y: auto;
+    flex: 1;
+    padding-bottom: 3rem;
+  }
+
+  .ql-toolbar {
+    position: absolute;
+    z-index: 10;
+    inset: auto auto 1rem 1rem;
+  }
+
+  div.ql-toolbar.ql-snow {
+    border: none;
+    background-color: white;
+    border-radius: 2rem;
+    box-shadow:
+      0 1px 3px 0 rgb(0 0 0 / 0.1),
+      0 1px 2px -1px rgb(0 0 0 / 0.1);
+  }
+
+  div.ql-container.ql-snow {
+    height: 160px;
+    display: flex;
+    flex-direction: column;
+    border: none;
+    border-radius: 12px;
+  }
+
+  .ql-editor::before {
+    font-style: normal !important;
+    color: #a0aec0;
+    font-size: 0.9375rem;
+  }
+
+  .ql-toolbar.ql-snow span.ql-formats {
+    margin: 0;
+  }
+
+  .underline-fade {
+    position: relative;
+    text-decoration: none;
+  }
+
+  .underline-fade::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 1px;
+    background-color: currentColor;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s ease;
+  }
+
+  .underline-fade:hover::after {
+    transform: scaleX(1);
+  }
+</style>

@@ -1,0 +1,29 @@
+---
+const { title, timeToRead, releaseDate, href } = Astro.props;
+---
+
+<li
+  class="group mx-[-1rem] rounded-lg hover:bg-light-300/30 dark:hover:bg-dark-700"
+>
+  <a
+    href={href}
+    class="relative flex items-baseline overflow-hidden px-4 py-2 max-sm:flex max-sm:flex-col"
+  >
+    <span class="text-base font-normal max-sm:mb-2 dark:text-dark-0/90"
+      >{title}</span
+    >
+    <div
+      class="ml-5 mr-[0.875rem] h-[1px] flex-grow self-center bg-light-300 max-sm:hidden dark:bg-dark-600/75"
+    >
+    </div>
+    <time
+      class="w-[5.25rem] text-end text-sm text-light-400 delay-0 duration-500 will-change-transform group-hover:-translate-y-10 group-hover:delay-700 max-sm:text-start max-sm:group-hover:translate-y-0 dark:text-dark-300"
+      >{releaseDate}</time
+    >
+    <span
+      class="absolute right-4 translate-y-20 text-sm text-light-400 delay-0 duration-500 group-hover:translate-y-0 group-hover:delay-700 max-sm:bottom-2 max-sm:translate-y-0 max-sm:group-hover:translate-y-0 dark:text-dark-300"
+    >
+      {timeToRead} minutes
+    </span>
+  </a>
+</li>

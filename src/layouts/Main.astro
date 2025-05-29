@@ -1,0 +1,21 @@
+---
+import Footer from "../components/Footer/Footer.astro";
+import Header from "../components/Header/Header";
+import BaseLayout from "./BaseLayout.astro";
+
+const { title, isFullSpan } = Astro.props;
+---
+
+<BaseLayout title={title}>
+  <div
+    class="grid h-full min-h-full auto-rows-min grid-cols-[1fr_min(620px,100%)_1fr] grid-rows-[max-content_1fr_max-content] [grid-template-areas:'._header_.''._main_.''._footer_.']"
+  >
+    <Header client:load currentPath={Astro.url.pathname} />
+    <main
+      class=`flex flex-col justify-center ${isFullSpan || "[grid-area:main]"} ${isFullSpan && "col-span-full"}`
+    >
+      <slot />
+    </main>
+    <Footer />
+  </div>
+</BaseLayout>

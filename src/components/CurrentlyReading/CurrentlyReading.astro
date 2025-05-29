@@ -1,0 +1,47 @@
+---
+import BookFallback from "./BookFallback.astro";
+
+interface Book {
+  bookTitle: string;
+  bookCover: string;
+  bookAuthors: string;
+  externalUrl: string;
+}
+
+const API_URL =
+  "https://za0j0wwqi3.execute-api.us-east-1.amazonaws.com/prod/currently-reading";
+
+let book: Book | null = null;
+let errorMessage = null;
+
+try {
+  const response = await fetch(API_URL);
+  if (!response.ok) throw new Error("Failed to fetch book");
+  book = await response.json();
+} catch (error) {
+  errorMessage = error.message;
+  console.error("Error fetching book data:", error);
+}
+---
+
+{
+  errorMessage ? (
+    <BookFallback message="Couldn't load book" />
+  ) : book ? (
+    <a href={book.externalUrl} class="flex gap-4">
+      <img
+        class="w-[4.1343rem] rounded-md shadow-md"
+        src={book.bookCover}
+        alt={book.bookTitle}
+      />
+      <div class="flex flex-col gap-1">
+        <p class="text-base leading-none">{book.bookTitle}</p>
+        <p class="text-sm text-light-400 dark:text-dark-300">
+          {book.bookAuthors}
+        </p>
+      </div>
+    </a>
+  ) : (
+    <BookFallback />
+  )
+}
