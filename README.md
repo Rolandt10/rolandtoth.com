@@ -44,10 +44,13 @@ You can check out how I upload and optimize images from my phone to my website i
 | `DropboxWebhookUpdater`               | Since AWS EventBridge allows a minimum interval of 1 minute, this function helps distribute polling tasks to a queue. This enables polling every ~15s, which stays within Spotify’s rate limits.  |
 | `refreshDropboxAccessToken`               | Retrieves the current book data through the Literal Club API  |
 | `ListImagesFromS3`               | Retrieves the current book data through the Literal Club API  |
-| `getGalleryImages`               | Retrieves the current book data through the Literal Club API  |
+| `getGalleryImages`               | Returns the stored images from S3 (used by the API Gateway) |
+
+### Comment handling
 
 ## Design
 
 The website was designed in Figma, following a [WCAG-compliant](https://www.w3.org/WAI/standards-guidelines/wcag/) color palette for both dark and light themes, along with a consistent typography scale (Inter). I also applied some of my own design sensibilities; whether they’re good or bad, I’ll let you be the judge. You can check the design files [here](https://www.figma.com/design/uN7ncqyoQQMpBwUdcjaU6n/Blog?node-id=479-622&t=QHzpassO4leYD4Qt-1).
 
 ## Accessibility
+
