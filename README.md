@@ -1,6 +1,6 @@
 # **rolandtoth.com**
 
-Some stuff that I dare to share on the internet. [Take a look.](https://rolandtoth.com)
+Some stuff that I dare to share on the internet. [Take a look](https://rolandtoth.com).
 
 ## Documentation
 
@@ -36,15 +36,18 @@ This feature uses polling to retrieve the currently playing song from Spotify �
 
 ### Image handling
 
+You can check out how I upload and optimize images from my phone to my website in [this blog post](https://www.rolandtoth.com/posts/my-first-post/).
+
 | Function Name                  | Purpose                                            |
 |-------------------------------|----------------------------------------------------|
-| `refreshSpotifyAccessToken` | Scheduled function to refresh the Spotify access token |
-| `pushMessagesToSQS`               | Since AWS EventBridge allows a minimum interval of 1 minute, this function helps distribute polling tasks to a queue. This enables polling every ~15s, which stays within Spotify’s rate limits.  |
-| `getLastPlayedTrack`               | Retrieves the current book data through the Literal Club API  |
-| `getCurrentlyPlayingSpotifyTrack`               | Retrieves the current book data through the Literal Club API  |
+| `DropboxToS3Uploader` | Scheduled function to refresh the Spotify access token |
+| `DropboxWebhookUpdater`               | Since AWS EventBridge allows a minimum interval of 1 minute, this function helps distribute polling tasks to a queue. This enables polling every ~15s, which stays within Spotify’s rate limits.  |
+| `refreshDropboxAccessToken`               | Retrieves the current book data through the Literal Club API  |
+| `ListImagesFromS3`               | Retrieves the current book data through the Literal Club API  |
+| `getGalleryImages`               | Retrieves the current book data through the Literal Club API  |
 
 ## Design
 
-The website was designed in Figma, following a [WCAG-compliant](https://www.w3.org/WAI/standards-guidelines/wcag/) color palette for both dark and light themes, along with a consistent typography scale (Inter). I also applied some of my own design sensibilities; whether they’re good or bad, I’ll let you be the judge. You can check the design files [here.](https://www.figma.com/design/uN7ncqyoQQMpBwUdcjaU6n/Blog?node-id=479-622&t=QHzpassO4leYD4Qt-1)
+The website was designed in Figma, following a [WCAG-compliant](https://www.w3.org/WAI/standards-guidelines/wcag/) color palette for both dark and light themes, along with a consistent typography scale (Inter). I also applied some of my own design sensibilities; whether they’re good or bad, I’ll let you be the judge. You can check the design files [here](https://www.figma.com/design/uN7ncqyoQQMpBwUdcjaU6n/Blog?node-id=479-622&t=QHzpassO4leYD4Qt-1).
 
 ## Accessibility
