@@ -56,3 +56,7 @@ The website was designed in Figma, following a [WCAG-compliant](https://www.w3.o
 
 ## Accessibility
 
+## Deployment
+
+The site is automatically deployed via GitHub Actions. On every push to the master branch, a workflow builds the project and uploads the static files to an S3 bucket, which is served through CloudFront.
+
