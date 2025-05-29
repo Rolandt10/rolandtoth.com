@@ -1,5 +1,5 @@
 ---
-import TextLink from "../Links/TextLink.astro";
+import TextLink from "../Links/TextLink";
 ---
 
 <section class="my-32 flex flex-col gap-0">
@@ -15,15 +15,20 @@ import TextLink from "../Links/TextLink.astro";
   <p class="text-justify">
     Hi, I’m Roland, a software engineer with a degree from the Budapest
     University of Technology and Economics. I’ve worked on various projects,
-    including an internship at <TextLink href="https://www.audi.hu/en/"
-      >Audi</TextLink
+    including an internship at <TextLink
+      href="https://www.audi.hu/en/"
+      className={"text-light-500 dark:text-dark-0"}>Audi</TextLink
     >, where I gained practical experience in software development.
   </p>
   <p>
     In my free time, I enjoy running and hiking — anything that gets me
     outdoors. Feel free to check out my website to know what I'm currently up to
-    or get in touch through either <TextLink href="mailto:hi@rolandtoth.com"
-      >e-mail</TextLink
-    > or <TextLink href="https://x.com/rlndtth">X</TextLink>.
+    or get in touch through either <TextLink
+      href="mailto:hi@rolandtoth.com"
+      className={"text-light-500 dark:text-dark-0"}>e-mail</TextLink
+    > or <TextLink
+      href="https://x.com/rlndtth"
+      className={"text-light-500 dark:text-dark-0"}>X</TextLink
+    >.
   </p>
 </section>

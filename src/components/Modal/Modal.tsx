@@ -14,7 +14,7 @@ export default function Modal({ title, trigger, children }: Props) {
 
       <Dialog.Portal>
         <Dialog.Overlay className="fixed inset-0 z-50 bg-black/50" />
-        <Dialog.Content className="fixed inset-0 z-50 m-auto max-h-[90%] w-[80vw] max-w-2xl overflow-hidden overflow-y-auto rounded-xl bg-white shadow-xl focus:outline-none">
+        <Dialog.Content className="fixed inset-0 z-50 m-auto max-h-[90%] w-[90vw] max-w-2xl overflow-hidden overflow-y-auto rounded-xl bg-white shadow-xl focus:outline-none">
           <Dialog.Title className="pl-5 pt-5 text-xl font-semibold text-dark-500/90">
             {title}
           </Dialog.Title>
