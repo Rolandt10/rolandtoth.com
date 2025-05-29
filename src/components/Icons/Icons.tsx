@@ -27,6 +27,26 @@ export const BookIcon = ({ size, ...props }) => {
   );
 };
 
+export const CalendarIcon = ({ size, ...props }) => {
+  return (
+    <BaseIcon label="Calendar" size={size} {...props}>
+      <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+      <line x1="16" y1="2" x2="16" y2="6"></line>
+      <line x1="8" y1="2" x2="8" y2="6"></line>
+      <line x1="3" y1="10" x2="21" y2="10"></line>
+    </BaseIcon>
+  );
+};
+
+export const ClockIcon = ({ size, ...props }) => {
+  return (
+    <BaseIcon label="Clock" size={size} {...props}>
+      <circle cx="12" cy="12" r="10"></circle>
+      <polyline points="12 6 12 12 16 14"></polyline>
+    </BaseIcon>
+  );
+};
+
 export const PlayIcon = ({ size, ...props }) => {
   return (
     <BaseIcon label="Play" size={size} {...props}>
@@ -91,7 +111,7 @@ export const BookOpenIcon = ({ size, ...props }) => {
 
 export const ApertureIcon = ({ size, ...props }) => {
   return (
-    <BaseIcon label="Blog" size={size} {...props}>
+    <BaseIcon label="Aperture" size={size} {...props}>
       <circle cx="12" cy="12" r="10"></circle>
       <line x1="14.31" y1="8" x2="20.05" y2="17.94"></line>
       <line x1="9.69" y1="8" x2="21.17" y2="8"></line>
@@ -105,8 +125,11 @@ export const ApertureIcon = ({ size, ...props }) => {
 
 export const TwitterIcon = ({ size, ...props }) => {
   return (
-    <BaseIcon label="Blog" size={size} {...props}>
-      <path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path>
+    <BaseIcon label="X (formerly Twitter)" size={size} {...props}>
+      <path
+        fill="currentColor"
+        d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932ZM17.61 20.644h2.039L6.486 3.24H4.298Z"
+      />
     </BaseIcon>
   );
 };
@@ -122,7 +145,7 @@ export const ArrowRightIcon = ({ size, ...props }) => {
 
 export const SearchIcon = ({ size, ...props }) => {
   return (
-    <BaseIcon label="Arrow right" size={size} {...props}>
+    <BaseIcon label="Search" size={size} {...props}>
       <circle cx="11" cy="11" r="8"></circle>
       <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
     </BaseIcon>
@@ -131,7 +154,7 @@ export const SearchIcon = ({ size, ...props }) => {
 
 export const PinIcon = ({ size, ...props }) => {
   return (
-    <BaseIcon label="Arrow right" size={size} {...props}>
+    <BaseIcon label="Pin" size={size} {...props}>
       <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
       <circle cx="12" cy="10" r="3"></circle>
     </BaseIcon>
@@ -140,7 +163,7 @@ export const PinIcon = ({ size, ...props }) => {
 
 export const GithubIcon = ({ size, ...props }) => {
   return (
-    <BaseIcon label="Arrow right" size={size} {...props}>
+    <BaseIcon label="Github" size={size} {...props}>
       <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
     </BaseIcon>
   );
@@ -148,7 +171,7 @@ export const GithubIcon = ({ size, ...props }) => {
 
 export const RSSIcon = ({ size, ...props }) => {
   return (
-    <BaseIcon label="Arrow right" size={size} {...props}>
+    <BaseIcon label="RSS" size={size} {...props}>
       <path d="M4 11a9 9 0 0 1 9 9"></path>
       <path d="M4 4a16 16 0 0 1 16 16"></path>
       <circle cx="5" cy="19" r="1"></circle>
@@ -158,10 +181,51 @@ export const RSSIcon = ({ size, ...props }) => {
 
 export const ExternalLinkIcon = ({ size, ...props }) => {
   return (
-    <BaseIcon label="Arrow right" size={size} {...props}>
+    <BaseIcon label="External Link" size={size} {...props}>
       <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
       <polyline points="15 3 21 3 21 9"></polyline>
       <line x1="10" y1="14" x2="21" y2="3"></line>
+    </BaseIcon>
+  );
+};
+
+export const LinkIcon = ({ size, ...props }) => {
+  return (
+    <BaseIcon label="Link" size={size} {...props}>
+      <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+      <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+    </BaseIcon>
+  );
+};
+
+export const FacebookIcon = ({ size, ...props }) => {
+  return (
+    <BaseIcon label="Facebook" size={size} {...props}>
+      <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
+    </BaseIcon>
+  );
+};
+
+export const RedditIcon = ({ size, ...props }) => {
+  return (
+    <BaseIcon label="Reddit" size={size} {...props}>
+      <path
+        fill="currentColor"
+        d="M19.522,7.196c-1.062-1.064-2.775-1.077-3.896-0.069c-1.305-0.627-2.815-1.026-4.437-1.121 c0.6-1.862,1.834-4.465,3.077-4.715c0.418-0.083,0.874,0.137,1.353,0.657c-0.035,0.138-0.061,0.28-0.061,0.427
+c0,0.921,0.748,1.669,1.669,1.669c0.921,0,1.669-0.746,1.669-1.669c0-0.921-0.748-1.667-1.669-1.667
+c-0.3,0-0.581,0.086-0.825,0.226c-0.758-0.753-1.558-1.055-2.386-0.89c-2.417,0.487-3.88,5.023-4.157,5.955
+C8.152,6.076,6.563,6.485,5.202,7.146c-1.119-1.031-2.849-1.022-3.92,0.049C0.227,8.25,0.207,9.942,1.189,11.064
+c-0.319,0.731-0.498,1.512-0.498,2.324c0,4.089,4.371,7.417,9.744,7.417s9.746-3.327,9.746-7.417c0-0.831-0.189-1.628-0.522-2.375
+C20.597,9.893,20.561,8.235,19.522,7.196z M1.731,7.645C2.506,6.869,3.73,6.818,4.598,7.467c-1.344,0.769-2.422,1.79-3.101,2.977
+C0.904,9.58,0.977,8.398,1.731,7.645z M10.435,19.531c-4.673,0-8.473-2.755-8.473-6.143c0-3.385,3.8-6.142,8.473-6.142
+c4.674,0,8.474,2.757,8.474,6.142C18.909,16.778,15.109,19.531,10.435,19.531z M16.234,7.446c0.868-0.627,2.071-0.567,2.838,0.2
+c0.742,0.74,0.825,1.891,0.27,2.749C18.656,9.217,17.578,8.205,16.234,7.446z M6.886,13.284c-0.877,0-1.589-0.711-1.589-1.589
+c0-0.877,0.711-1.589,1.589-1.589c0.878,0,1.589,0.711,1.589,1.589S7.763,13.284,6.886,13.284z M15.56,11.694
+c0,0.877-0.711,1.589-1.589,1.589c-0.877,0-1.589-0.711-1.589-1.589c0-0.878,0.711-1.589,1.589-1.589
+C14.848,10.105,15.56,10.816,15.56,11.694z M14.222,15.912c0.217,0.275,0.167,0.676-0.112,0.893
+c-1.326,1.028-2.614,1.375-3.742,1.375c-2.255,0-3.874-1.378-3.898-1.4c-0.264-0.228-0.291-0.632-0.061-0.896
+c0.231-0.264,0.63-0.291,0.894-0.063c0.118,0.101,2.884,2.42,6.027-0.02C13.606,15.584,14.005,15.637,14.222,15.912z"
+      ></path>
     </BaseIcon>
   );
 };

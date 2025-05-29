@@ -1,6 +1,6 @@
 ---
 import { getCollection } from "astro:content";
-import PostListItem from "../components/PostListItem.astro";
+import PostListItem from "../components/Posts/PostListItem.astro";
 import PostsProcessor from "../utils/PostsProcessor.ts";
 import Main from "../layouts/Main.astro";
 
@@ -10,7 +10,14 @@ const processedPosts = new PostsProcessor(posts).processPosts();
 
 <Main title="Posts">
   <main class="mb-24 [grid-area:main]">
-    <h1 class="my-36 text-xl text-light-600 dark:text-dark-0">Posts</h1>
+    <div class="my-36 flex justify-between">
+      <h1 class="text-lg text-light-600 dark:text-dark-0">Posts</h1>
+      <a
+        href="rss.xml"
+        class="rounded-lg border px-2 py-[2px] text-xsm dark:border-dark-500/70 dark:bg-dark-700 dark:text-dark-200"
+        >RSS</a
+      >
+    </div>
     {
       processedPosts.map(([year, posts]) => (
         <section class="mb-24 last:mb-0">

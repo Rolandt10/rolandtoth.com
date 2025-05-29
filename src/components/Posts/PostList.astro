@@ -9,18 +9,20 @@ console.log(processedPosts);
 ---
 
 {
-  processedPosts.map(([_, posts]) => (
+  (
     <ul>
-      {posts.map((post) => (
-        <li>
-          <PostListItem
-            title={post.data.title}
-            releaseDate={post.data.date}
-            timeToRead={post.readTime}
-            href={`/posts/${post.slug}`}
-          />
-        </li>
-      ))}
+      {processedPosts.map(([_, posts]) =>
+        posts.map((post) => (
+          <li>
+            <PostListItem
+              title={post.data.title}
+              releaseDate={post.data.date}
+              timeToRead={post.readTime}
+              href={`/posts/${post.slug}`}
+            />
+          </li>
+        )),
+      )}
     </ul>
-  ))
+  )
 }

@@ -1,7 +1,10 @@
+import colors from "tailwindcss/colors";
+
 export default {
   content: ["./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}"],
   theme: {
     colors: {
+      ...colors,
       dark: {
         0: "#FFFFFF",
         100: "#D2D6DA",

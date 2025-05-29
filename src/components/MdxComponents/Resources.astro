@@ -1,0 +1,41 @@
+---
+interface Resource {
+  author: string;
+  title: string;
+  url: string;
+}
+
+interface Props {
+  items: Resource[];
+}
+
+const { items }: Props = Astro.props;
+---
+
+<div
+  class="mt-6 flex flex-col gap-4 rounded-xl p-6 text-sm leading-relaxed dark:bg-dark-600/60"
+>
+  <div
+    class="flex items-center text-base before:flex-1 before:border-t before:border-dark-400 after:flex-1 after:border-t after:border-dark-400 dark:before:border-dark-500 dark:after:border-dark-500"
+  >
+    <span
+      class="whitespace-nowrap rounded-md border px-3 py-[0.1rem] text-sm dark:border-dark-400/40 dark:bg-dark-700/40"
+      >Used resources
+    </span>
+  </div>
+
+  <ol class="mt-2 space-y-1 pl-3">
+    {
+      items.map((item, index) => (
+        <li>
+          <span>[{index + 1}]</span> {item.author}, <em>{item.title}</em>
+          <a href={item.url} class="ml-1 inline-flex">
+            <span class="rounded-md border px-[0.4rem] text-xsm dark:border-dark-400/30 dark:bg-dark-700">
+              View &rarr;
+            </span>
+          </a>
+        </li>
+      ))
+    }
+  </ol>
+</div>

@@ -1,10 +1,18 @@
 ---
 import { getCollection } from "astro:content";
 import Main from "../../layouts/Main.astro";
+import { mdxStyles } from "../../components/MdxComponents/MdxStyles";
+import { CalendarIcon, ClockIcon } from "../../components/Icons/Icons";
+import PostsProcessor from "../../utils/PostsProcessor";
+import ShareButtons from "../../components/ShareButtons/ShareButtons";
+import TermsSection from "../../components/TermsSection/TermsSection";
+import CommentEditor from "../../components/CommentEditor/CommentEditor";
 
-const posts = await getCollection("posts");
 const { slug } = Astro.params;
-const post = posts.find((p) => p.slug === slug);
+const posts = await getCollection("posts");
+const processedPosts = new PostsProcessor(posts).processPosts();
+const allPosts = processedPosts.flatMap(([_, posts]) => posts);
+const post = allPosts.find((p) => p.slug === slug);
 
 if (!post) {
   throw new Error(`Post not found: ${slug}`);
@@ -16,23 +24,58 @@ const [year, month, day] = new Date(post.data.date)
   .split("-");
 
 const { Content } = await post.render();
+
+export async function getStaticPaths() {
+  const posts = await getCollection("posts");
+  return posts.map((post) => ({
+    params: { slug: post.slug },
+    props: { post },
+  }));
+}
 ---
 
-<Main>
-  <h1 class="my-36 text-xl dark:text-dark-0">{post.data.title}</h1>
-  <time
-    datetime=""
-    class="mb-16 w-max rounded-full border px-3 py-1 text-xsm dark:border-dark-500"
-    >{year} / {month} / {day}</time
-  >
+<Main title={post.data.title}>
+  <h1 class="my-24 text-lg dark:text-dark-0">{post.data.title}</h1>
+  <div class="flex justify-between">
+    <div
+      class="mb-16 flex w-max items-center justify-center gap-1 rounded-full border px-2 py-1 text-xsm dark:border-dark-500 dark:bg-dark-700"
+    >
+      <CalendarIcon
+        size={16}
+        stroke-width="1.6"
+        className="dark:text-dark-200"
+      />
+      <span class="dark:text-dark-400/70">&vert;</span>
+      <time datetime={post.data.date}
+        >{year}
+        <span class="dark:text-dark-400/70">&middot;</span>
+        {month}
+        <span class="dark:text-dark-400/70">&middot;</span>
+        {day}</time
+      >
+    </div>
+    <div
+      class="mb-16 flex w-max items-center justify-center gap-1 rounded-full border px-2 py-1 text-xsm dark:border-dark-500 dark:bg-dark-700"
+    >
+      <ClockIcon size={16} stroke-width="1.6" className="dark:text-dark-200" />
+      <span class="dark:text-dark-400/70">&vert;</span>
+      <span>{post.readTime} minutes</span>
+    </div>
+  </div>
   <article class="markdown-content">
-    <Content />
+    <Content components={mdxStyles} />
   </article>
-  <div class="my-24 flex justify-between">
+  <div class="my-14 flex items-center justify-between">
     <a
       href="/posts"
-      class="w-max rounded-full border border-dark-500 px-3 py-1 text-xsm hover:dark:border-dark-400/50"
+      class="flex w-max items-center justify-center self-center rounded-full border border-dark-500 px-3 py-1 text-xsm dark:bg-dark-700 hover:dark:border-dark-400/50"
       >&leftarrow; Back to posts</a
     >
+    <ShareButtons client:load />
   </div>
+
+  <CommentEditor client:only="react" />
+  <TermsSection client:only="react" />
+  <hr class="mb-11 h-[1px] border-0 dark:bg-dark-400/60" />
+  <div>Comments</div>
 </Main>

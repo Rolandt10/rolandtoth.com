@@ -1,21 +1,37 @@
 import readingTime from "reading-time";
 
+interface PostData {
+  title: string;
+  date: string;
+  slug: string;
+  [key: string]: any;
+}
+
+interface Post {
+  body: string;
+  data: PostData;
+  [key: string]: any;
+}
+
+interface PostWithReadTime extends Post {
+  readTime: number;
+}
+
+type GroupedPosts = Map<number, Post[]>;
+type SortedGroupedPosts = [number, PostWithReadTime[][]][];
+
 class PostsProcessor {
-  private posts;
+  constructor(private posts: Post[]) {}
 
-  constructor(posts) {
-    this.posts = posts;
-  }
-
-  private addReadTimeToPosts() {
+  private addReadTimeToPosts(): void {
     this.posts = this.posts.map((post) => ({
       ...post,
       readTime: Math.round(readingTime(post.body).minutes),
     }));
   }
 
-  private groupPostsByYear() {
-    const postsGroupedByYear = new Map();
+  private groupPostsByYear(): GroupedPosts {
+    const postsGroupedByYear = new Map<number, Post[]>();
 
     this.posts.forEach((post) => {
       const year = new Date(post.data.date).getFullYear();
@@ -26,20 +42,20 @@ class PostsProcessor {
       }
     });
 
-    this.posts = postsGroupedByYear;
+    return postsGroupedByYear;
   }
 
-  private sortPostsByYearDescending() {
-    this.posts = Array.from(this.posts.entries()).sort((a, b) => b[0] - a[0]);
+  private sortPostsByYearDescending(
+    groupedPosts: GroupedPosts,
+  ): SortedGroupedPosts {
+    return Array.from(groupedPosts.entries()).sort((a, b) => b[0] - a[0]);
   }
 
-  public processPosts() {
+  public processPosts(): SortedGroupedPosts {
     try {
       this.addReadTimeToPosts();
-      this.groupPostsByYear();
-      this.sortPostsByYearDescending();
-
-      return this.posts;
+      const grouped = this.groupPostsByYear();
+      return this.sortPostsByYearDescending(grouped);
     } catch (error) {
       console.error("Failed to process posts", error);
       throw new Error("Failed to process posts.");

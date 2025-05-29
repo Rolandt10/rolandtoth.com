@@ -1,6 +1,5 @@
 ---
-import { ViewTransitions } from "astro:transitions";
-import ResizeHandler from "../components/ResizeHandler.astro";
+import ResizeHandler from "../components/ResizeHandler/ResizeHandler.astro";
 interface Props {
   title: string;
 }
@@ -30,27 +29,28 @@ const { title } = Astro.props;
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
   </head>
-  <body class="mx-6 mt-14 h-full font-inter text-base">
+  <body class="mx-6 mt-14 h-full font-inter text-base" id="astro-root">
     <slot />
   </body><ResizeHandler />
 </html>
 <style is:global>
   [cmdk-overlay] {
-    @apply bg-light-600/20 dark:bg-dark-600/60;
+    @apply bg-light-600/20 dark:bg-dark-600/40;
     @apply fixed left-0 top-0;
     @apply h-full w-full;
-    @apply backdrop-blur-sm;
+    @apply z-20;
   }
 
   [cmdk-dialog] {
-    @apply absolute left-2/4 top-2/4 -translate-x-2/4 -translate-y-2/4;
-    @apply border border-light-400/25 dark:border-dark-400/50;
+    @apply absolute left-2/4 top-2/4 ml-2 -translate-x-2/4 -translate-y-2/4;
+    @apply border border-light-400/25 dark:border-dark-400/30;
     @apply rounded-xl;
     @apply w-full max-w-sm;
     @apply shadow-md;
     @apply px-5 pb-2 pt-5;
     @apply font-inter;
-    @apply bg-light-100 dark:bg-dark-500;
+    @apply bg-light-100 dark:bg-dark-600;
+    @apply z-30;
   }
 
   [cmdk-input] {
@@ -87,7 +87,7 @@ const { title } = Astro.props;
   }
 
   [cmdk-item] a:hover {
-    @apply bg-light-300/45 dark:bg-dark-600/60;
+    @apply bg-light-300/45 dark:bg-dark-500;
     @apply rounded-md dark:text-dark-100;
     @apply -mx-3;
     @apply px-3;
@@ -95,10 +95,88 @@ const { title } = Astro.props;
 
   .markdown-content p:not(:last-child) {
     margin-bottom: 2rem;
-    line-height: 1.5;
+  }
+
+  .markdown-content p {
+    line-height: 1.6;
   }
 
   body.stop-transitions * {
     transition: none !important;
+  }
+
+  .pswp__counter {
+    color: #d2d6da;
+    background-color: #1c1f22;
+    border-radius: 16px;
+    padding-inline: 12px;
+  }
+
+  .ql-editor {
+    padding: 1rem;
+    font-size: 1rem;
+    background-color: #f9f9f9;
+    border-radius: 12px;
+    line-height: 1.8;
+    font-family: "Segoe UI", sans-serif;
+    min-height: 150px;
+    overflow-y: auto;
+    flex: 1;
+    padding-bottom: 3rem;
+  }
+
+  .ql-toolbar {
+    position: absolute;
+    z-index: 10;
+    inset: auto auto 1rem 1rem;
+  }
+
+  div.ql-toolbar.ql-snow {
+    border: none;
+    background-color: white;
+    border-radius: 2rem;
+    box-shadow:
+      0 1px 3px 0 rgb(0 0 0 / 0.1),
+      0 1px 2px -1px rgb(0 0 0 / 0.1);
+  }
+
+  div.ql-container.ql-snow {
+    height: 160px;
+    display: flex;
+    flex-direction: column;
+    border: none;
+    border-radius: 12px;
+  }
+
+  .ql-editor::before {
+    font-style: normal !important;
+    color: #a0aec0;
+    font-size: 0.9375rem;
+  }
+
+  .ql-toolbar.ql-snow span.ql-formats {
+    margin: 0;
+  }
+
+  .underline-fade {
+    position: relative;
+    text-decoration: none;
+  }
+
+  .underline-fade::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 1px;
+    background-color: currentColor;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s ease;
+  }
+
+  .underline-fade:hover::after {
+    transform: scaleX(1);
   }
 </style>
