@@ -1,6 +1,4 @@
 ---
-import { Modal } from "free-astro-components";
-
 interface ImageData {
   src: string;
   alt: string;
@@ -12,23 +10,11 @@ const { src, alt, caption }: ImageData = Astro.props as ImageData;
 
 <figure class="relative mb-8 w-full">
   <img
-    data-modal-trigger="modal-id"
     src={src}
     alt={alt}
-    role="button"
-    tabindex="0"
-    aria-label="Click to view full image"
-    class="relative left-1/2 w-[min(100vw,calc(100%+19rem))] max-w-none -translate-x-1/2 cursor-pointer rounded-none transition-all duration-300 ease-in-out sm:rounded-lg"
+    class="relative left-1/2 w-[min(100vw,calc(100%+19rem))] max-w-none -translate-x-1/2 rounded-none transition-all duration-300 ease-in-out sm:rounded-lg"
   />
   <figcaption class="border-b py-2 text-xsm dark:border-dark-500">
     {caption}
   </figcaption>
 </figure>
-
-<Modal id="modal-id">
-  <img
-    src={src}
-    alt={alt}
-    class="max-h-full max-w-full rounded-lg object-contain"
-  />
-</Modal>
