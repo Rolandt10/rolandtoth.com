@@ -10,7 +10,7 @@ The **backend** is built using various **AWS services**, including **Lambda**, *
 
 For **authentication and commenting**, the site uses **Firebase**, which offers a simpler, frontend-friendly solution compared to managing auth flows on AWS.
 
-This section focuses on the backend.
+The following section focuses on the backend.
 
 ## AWS
 
