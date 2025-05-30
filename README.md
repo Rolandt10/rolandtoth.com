@@ -29,7 +29,7 @@ This feature uses polling to retrieve the currently playing song from Spotify â€
  Function Name                      | Purpose                                                                                       |
 |-----------------------------------|-----------------------------------------------------------------------------------------------|
 | `refreshSpotifyAccessToken`       | Scheduled function to refresh the Spotify access token                                        |
-| `pushMessagesToSQS`               | Pushes polling messages into an SQS queue to simulate ~15s intervals                         |
+| `pushMessagesToSQS`               | Pushes polling messages into an SQS queue to simulate ~15s intervals (since the shortest interval AWS EventBridge allows is 1 minute)                        |
 | `getCurrentlyPlayingSpotifyTrack` | Polls the Spotify API for the currently playing track and updates DynamoDB (triggered via SQS) |
 | `getLastPlayedTrack`              | Retrieves the most recent track from DynamoDB (used by the API Gateway)                      |
 
