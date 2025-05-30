@@ -113,7 +113,6 @@ const { title } = Astro.props;
   }
 
   .ql-editor {
-    padding: 1rem;
     font-size: 1rem;
     background-color: #f9f9f9;
     border-radius: 12px;
@@ -134,24 +133,31 @@ const { title } = Astro.props;
   div.ql-toolbar.ql-snow {
     border: none;
     background-color: white;
-    border-radius: 2rem;
+    border-radius: 0.7rem;
     box-shadow:
-      0 1px 3px 0 rgb(0 0 0 / 0.1),
-      0 1px 2px -1px rgb(0 0 0 / 0.1);
+      0 1px 3px 0 rgb(0 0 0 / 0.2),
+      0 1px 2px -1px rgb(0 0 0 / 0.2);
   }
 
   div.ql-container.ql-snow {
-    height: 160px;
+    height: auto;
     display: flex;
     flex-direction: column;
     border: none;
     border-radius: 12px;
+    position: relative;
+    padding: 0;
   }
 
   .ql-editor::before {
-    font-style: normal !important;
+    font-style: italic !important;
     color: #a0aec0;
     font-size: 0.9375rem;
+  }
+
+  div.ql-editor {
+    color: #1c1f22;
+    padding-bottom: 68px;
   }
 
   .ql-toolbar.ql-snow span.ql-formats {
@@ -178,5 +184,9 @@ const { title } = Astro.props;
 
   .underline-fade:hover::after {
     transform: scaleX(1);
+  }
+
+  span#ql-picker-options-0 {
+    z-index: 10;
   }
 </style>

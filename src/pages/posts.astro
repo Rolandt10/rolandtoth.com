@@ -5,6 +5,7 @@ import PostsProcessor from "../utils/PostsProcessor.ts";
 import Main from "../layouts/Main.astro";
 
 const posts = await getCollection("posts");
+console.log(posts);
 const processedPosts = new PostsProcessor(posts).processPosts();
 ---
 

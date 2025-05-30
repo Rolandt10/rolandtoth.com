@@ -6,7 +6,6 @@ const posts = defineCollection({
     slug: z.string(),
     date: z.string(),
     description: z.string().optional(),
-    minutesRead: z.string(),
   }),
 });
 
