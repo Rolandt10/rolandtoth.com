@@ -8,9 +8,11 @@ This repository primarily contains the **frontend** of the website. Frontend sta
 
 The **backend** tasks—such as image processing, and comment handling—are managed through **AWS services**, including **Lambda**, **S3**, **DynamoDB**, **API Gateway**, **CloudFront**, and **SQS**.
 
+This section focuses on the backend.
+
 ## Lambda functions
 
-The project - as of yet - uses 11 Lambda functions, structured around the following areas (I know the function names could've been better):
+The project - as of yet - uses 11 Lambda functions, all written in JavaScript, structured around the following areas (I know the function names could've been better):
 
 ### Currently Read Book
 
