@@ -10,7 +10,11 @@ export default function InlineModal({
   return (
     <Modal
       title={title}
-      trigger={<button className="cursor-pointer underline">{title}</button>}
+      trigger={
+        <button className="cursor-pointer underline dark:text-dark-0">
+          {title}
+        </button>
+      }
     >
       {children}
     </Modal>

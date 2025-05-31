@@ -28,7 +28,7 @@ export default function AuthOverlay() {
         <button
           onClick={loginGoogle}
           type="button"
-          className="flex items-center gap-1 rounded-2xl border border-dark-400/50 px-3 py-1 text-sm text-dark-500 shadow-md hover:border-dark-500/50 dark:bg-dark-0"
+          className="flex items-center gap-1 rounded-2xl border border-dark-400/50 px-3 py-1 text-sm text-dark-500 shadow-sm hover:border-dark-500/50 dark:bg-dark-0"
         >
           <GoogleIcon size={14} />
           <span>Google</span>
@@ -36,7 +36,7 @@ export default function AuthOverlay() {
         <button
           onClick={loginGitHub}
           type="button"
-          className="flex items-center gap-1 rounded-2xl border border-dark-400/50 px-3 py-1 text-sm text-dark-500 shadow-md hover:border-dark-500/50 dark:bg-dark-0"
+          className="flex items-center gap-1 rounded-2xl border border-dark-400/50 px-3 py-1 text-sm text-dark-500 shadow-sm hover:border-dark-500/50 dark:bg-dark-0"
         >
           <GithubIcon size={14} className="text-dark-400" />
           <span>GitHub</span>
