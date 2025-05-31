@@ -93,7 +93,7 @@ export default function CommentEditor({ slug }: Props) {
               />
             </svg>
           ) : (
-            <span className="font-medium">Submit</span>
+            "Submit"
           )}
         </button>
         {!user && <AuthOverlay />}

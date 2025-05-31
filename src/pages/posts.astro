@@ -3,6 +3,7 @@ import { getCollection } from "astro:content";
 import PostListItem from "../components/Posts/PostListItem.astro";
 import PostsProcessor from "../utils/PostsProcessor.ts";
 import Main from "../layouts/Main.astro";
+import { RSSIcon } from "../components/Icons/Icons";
 
 const posts = await getCollection("posts");
 console.log(posts);
@@ -15,8 +16,8 @@ const processedPosts = new PostsProcessor(posts).processPosts();
       <h1 class="text-lg text-light-600 dark:text-dark-0">Posts</h1>
       <a
         href="rss.xml"
-        class="rounded-lg border px-2 py-[2px] text-xsm dark:border-dark-500/70 dark:bg-dark-700 dark:text-dark-200"
-        >RSS</a
+        class="text-light-500 dark:text-dark-300 dark:hover:text-dark-100"
+        ><RSSIcon size={18} /></a
       >
     </div>
     {
