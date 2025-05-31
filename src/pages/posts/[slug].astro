@@ -7,6 +7,7 @@ import PostsProcessor from "../../utils/PostsProcessor";
 import ShareButtons from "../../components/ShareButtons/ShareButtons";
 import CommentEditor from "../../components/CommentEditor/CommentEditor";
 import TermsSection from "../../components/TermsSection/TermsSection";
+import CommentList from "../../components/CommentList/CommentList";
 
 const { slug } = Astro.params;
 const posts = await getCollection("posts");
@@ -70,14 +71,15 @@ export async function getStaticPaths() {
       href="/posts"
       class="flex w-max items-center justify-center gap-2 self-center rounded-full border border-dark-500 px-3 py-1 text-xsm max-sm:h-10 max-sm:w-10 dark:bg-dark-700 hover:dark:border-dark-400/50"
       ><span class="max-sm:text-lg">&leftarrow;</span><span
-        class="max-sm:hidden">Back to posts</span
+        class="max-sm:sr-only">Back to posts</span
       ></a
     >
     <ShareButtons client:load />
   </div>
 
-  <CommentEditor client:only="react" />
+  <CommentEditor slug={post.slug} client:only="react" />
   <TermsSection client:load />
   <hr class="mb-11 h-[1px] border-0 dark:bg-dark-400/60" />
   <div>Comments</div>
+  <CommentList slug={post.slug} client:load />
 </Main>

@@ -4,6 +4,7 @@ import {
   signInWithPopup,
 } from "firebase/auth";
 import { auth } from "../../lib/firebase";
+import { GithubIcon, GoogleIcon } from "../Icons/Icons";
 
 export default function AuthOverlay() {
   const googleProvider = new GoogleAuthProvider();
@@ -15,7 +16,7 @@ export default function AuthOverlay() {
 
   return (
     <div
-      className="absolute inset-0 z-20 flex flex-col items-center justify-center gap-3 bg-white/75 backdrop-blur-sm"
+      className="absolute inset-0 z-20 flex flex-col items-center justify-center gap-3 rounded-xl bg-white/75 backdrop-blur-sm"
       style={{
         clipPath: "inset(0 round 4px)",
       }}
@@ -27,16 +28,18 @@ export default function AuthOverlay() {
         <button
           onClick={loginGoogle}
           type="button"
-          className="rounded-2xl border border-dark-400/20 px-3 py-1 text-sm text-dark-400 shadow-sm"
+          className="flex items-center gap-1 rounded-2xl border border-dark-400/50 px-3 py-1 text-sm text-dark-500 shadow-md hover:border-dark-500/50 dark:bg-dark-0"
         >
-          Google
+          <GoogleIcon size={14} />
+          <span>Google</span>
         </button>
         <button
           onClick={loginGitHub}
           type="button"
-          className="rounded-2xl border border-dark-400/20 px-3 py-1 text-sm text-dark-400 shadow-sm"
+          className="flex items-center gap-1 rounded-2xl border border-dark-400/50 px-3 py-1 text-sm text-dark-500 shadow-md hover:border-dark-500/50 dark:bg-dark-0"
         >
-          GitHub
+          <GithubIcon size={14} className="text-dark-400" />
+          <span>GitHub</span>
         </button>
       </div>
     </div>

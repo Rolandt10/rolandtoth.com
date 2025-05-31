@@ -1,27 +1,26 @@
 import { useEffect, useState } from "react";
 import CommandMenu from "../CommandMenu/CommandMenu";
 import { HomeIcon, MenuIcon } from "../Icons/Icons";
-import { motion } from "framer-motion";
 
 const Header = ({ currentPath }) => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
-  const [shouldAnimate, setShouldAnimate] = useState<boolean>(false);
+  //const [shouldAnimate, setShouldAnimate] = useState<boolean>(false);
 
   const isHomePage = currentPath === "/";
 
-  useEffect(() => {
-    const previousPath = sessionStorage.getItem("previousPath");
+  // useEffect(() => {
+  //   const previousPath = sessionStorage.getItem("previousPath");
 
-    if (!isHomePage && previousPath === "/") {
-      setShouldAnimate(true);
-    } else {
-      setShouldAnimate(false);
-    }
+  //   if (!isHomePage && previousPath === "/") {
+  //     setShouldAnimate(true);
+  //   } else {
+  //     setShouldAnimate(false);
+  //   }
 
-    if (currentPath !== previousPath) {
-      sessionStorage.setItem("previousPath", currentPath);
-    }
-  }, [currentPath, isHomePage]);
+  //   if (currentPath !== previousPath) {
+  //     sessionStorage.setItem("previousPath", currentPath);
+  //   }
+  // }, [currentPath, isHomePage]);
 
   return (
     <header className="flex items-center [grid-area:header]">
@@ -38,7 +37,7 @@ const Header = ({ currentPath }) => {
             />
           </button>
         </li>
-        {!isHomePage && (
+        {/* {!isHomePage && (
           <li>
             <motion.a
               href="/"
@@ -55,7 +54,7 @@ const Header = ({ currentPath }) => {
               />
             </motion.a>
           </li>
-        )}
+        )} */}
       </ul>
       <CommandMenu isOpen={isOpen} setIsOpen={setIsOpen} />
     </header>
