@@ -19,7 +19,7 @@ export default function Tooltip({
         <RadixTooltip.Trigger asChild>{children}</RadixTooltip.Trigger>
         <RadixTooltip.Portal>
           <RadixTooltip.Content
-            className="animate-fadeIn rounded px-3 py-1 text-xsm shadow-md dark:bg-dark-600/80"
+            className="animate-fadeIn rounded-lg px-3 py-1 text-xsm shadow-md dark:bg-dark-600/80"
             sideOffset={7}
             side={side}
           >
