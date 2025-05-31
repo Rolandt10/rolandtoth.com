@@ -5,6 +5,7 @@ import {
   FacebookIcon,
   RedditIcon,
 } from "../Icons/Icons";
+import * as Tooltip from "@radix-ui/react-tooltip";
 
 export default function ShareButtons() {
   const [url, setUrl] = useState("");
@@ -19,15 +20,32 @@ export default function ShareButtons() {
 
   return (
     <div className="flex gap-2">
-      <a
-        onClick={copyLink}
-        target="_blank"
-        rel="noopener noreferrer"
-        aria-label="Copy link"
-        className="flex h-10 w-10 cursor-pointer items-center justify-center rounded-full border dark:border-dark-500 dark:bg-dark-700 hover:dark:border-dark-400/50"
-      >
-        <LinkIcon size={16} stroke-width="1.6" />
-      </a>
+      <Tooltip.Provider delayDuration={200}>
+        <Tooltip.Root>
+          <Tooltip.Trigger asChild>
+            <a
+              onClick={copyLink}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Copy link"
+              className="flex h-10 w-10 cursor-pointer items-center justify-center rounded-full border dark:border-dark-500 dark:bg-dark-700 hover:dark:border-dark-400/50"
+            >
+              <LinkIcon size={16} stroke-width="1.6" />
+            </a>
+          </Tooltip.Trigger>
+          <Tooltip.Portal>
+            <Tooltip.Content
+              className="animate-fadeIn rounded px-3 py-1 text-xsm shadow-md dark:bg-dark-600/80"
+              sideOffset={7}
+              side={"bottom"}
+            >
+              Copy link
+              <Tooltip.Arrow className="dark:fill-dark-600/80" />
+            </Tooltip.Content>
+          </Tooltip.Portal>
+        </Tooltip.Root>
+      </Tooltip.Provider>
+
       <a
         href={`https://twitter.com/intent/tweet?url=${encodeURIComponent(url)}`}
         target="_blank"
