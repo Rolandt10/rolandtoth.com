@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import CommandMenu from "../CommandMenu/CommandMenu";
 import { HomeIcon, MenuIcon } from "../Icons/Icons";
+import Tooltip from "../Tooltip/Tooltip";
 
 const Header = ({ currentPath }) => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
@@ -26,16 +27,18 @@ const Header = ({ currentPath }) => {
     <header className="flex items-center [grid-area:header]">
       <ul className="relative flex gap-3">
         <li className="z-10">
-          <button
-            onClick={() => setIsOpen(!isOpen)}
-            className="flex h-10 w-10 items-center justify-center rounded-lg border border-light-300 bg-light-200 text-light-400 shadow transition-all duration-200 hover:scale-110 hover:shadow-md dark:border-dark-500 dark:bg-dark-700"
-          >
-            <MenuIcon
-              size={18}
-              className="dark:text-dark-100"
-              stroke-width="1.8"
-            />
-          </button>
+          <Tooltip text="Menu" delayDuration={100}>
+            <button
+              onClick={() => setIsOpen(!isOpen)}
+              className="flex h-10 w-10 items-center justify-center rounded-lg border border-light-300 bg-light-200 text-light-400 shadow transition-all duration-200 hover:scale-110 hover:shadow-md dark:border-dark-500 dark:bg-dark-700"
+            >
+              <MenuIcon
+                size={18}
+                className="dark:text-dark-100"
+                stroke-width="1.8"
+              />
+            </button>
+          </Tooltip>
         </li>
         {/* {!isHomePage && (
           <li>
