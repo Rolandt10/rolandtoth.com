@@ -20,7 +20,7 @@ The project - as of yet - uses 11 Lambda functions, all written in JavaScript, s
 
 #### Currently Read Book
 
-The currently read book feature on my website uses a POST GraphQL request (the [Literal Club](https://literal.club/) API uses GraphQL). The access token is regularly refreshed automatically, so no manual authentication is needed.
+The currently read book feature on my website uses a POST GraphQL request (the [Literal Club API](https://literal.club/pages/api) uses GraphQL). The access token is regularly refreshed automatically, so no manual authentication is needed.
 
 | Function Name                  | Purpose                                            |
 |-------------------------------|----------------------------------------------------|
