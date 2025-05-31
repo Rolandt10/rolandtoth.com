@@ -5,6 +5,8 @@ interface Props {
   text: string;
   delayDuration?: number;
   side?: "bottom" | "top" | "right" | "left";
+  open?: boolean;
+  onOpenChange?: any;
 }
 
 export default function Tooltip({
@@ -12,10 +14,12 @@ export default function Tooltip({
   text,
   delayDuration = 200,
   side = "bottom",
+  open,
+  onOpenChange,
 }: Props) {
   return (
     <RadixTooltip.Provider delayDuration={delayDuration}>
-      <RadixTooltip.Root>
+      <RadixTooltip.Root open={open} onOpenChange={onOpenChange}>
         <RadixTooltip.Trigger asChild>{children}</RadixTooltip.Trigger>
         <RadixTooltip.Portal>
           <RadixTooltip.Content
