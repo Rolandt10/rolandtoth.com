@@ -4,7 +4,7 @@ Some stuff that I dare to share on the internet. [Take a look](https://www.rolan
 
 ## Documentation
 
-This repository primarily contains the **frontend** of the website. The frontend stack includes: **Astro**, **React**, **Tailwind CSS**, **TypeScript**, **Vite**, **ESLint**, [**MDX**](https://mdxjs.com/), [**RadixUI**](https://www.radix-ui.com/) (used only for Modals and Tooltips), [**Quill.js**](https://quilljs.com/) (rich text editor).
+This repository primarily contains the **frontend** of the website. The frontend stack includes: [**Astro**](https://astro.build/), **React**, **Tailwind CSS**, **TypeScript**, **Vite**, **ESLint**, [**MDX**](https://mdxjs.com/), [**RadixUI**](https://www.radix-ui.com/) (used only for Modals and Tooltips), [**Quill.js**](https://quilljs.com/) (rich text editor), [**CMDK**](https://cmdk.paco.me/) (command menu).
 
 The **backend** is built using various **AWS services**, including **Lambda**, **S3**, **DynamoDB**, **API Gateway**, **CloudFront**, and **SQS** — handling tasks like image processing, polling, and other automation-heavy workflows.
 
@@ -22,35 +22,33 @@ The project - as of yet - uses 11 Lambda functions, all written in JavaScript, s
 
 The currently read book feature on my website uses a POST GraphQL request (the [Literal Club API](https://literal.club/pages/api) uses GraphQL). The access token is regularly refreshed automatically, so no manual authentication is needed.
 
-| Function Name                  | Purpose                                            |
-|-------------------------------|----------------------------------------------------|
-| `updateLiteralClubAccessToken` | Scheduled function to refresh the Literal Club access token |
-| `getCurrentBook`               | Retrieves the current book data through the Literal Club API  |
-
+| Function Name                  | Purpose                                                      |
+| ------------------------------ | ------------------------------------------------------------ |
+| `updateLiteralClubAccessToken` | Scheduled function to refresh the Literal Club access token  |
+| `getCurrentBook`               | Retrieves the current book data through the Literal Club API |
 
 #### Currently Playing Song ("Real-time")
 
 This feature uses polling to retrieve the currently playing song from Spotify — both on the **frontend (every ~7.5s)** and the **backend (every ~15s)**. To avoid exceeding Spotify’s API rate limits from multiple users, the backend handles polling every 15 seconds and stores the result in **DynamoDB**. The client then polls DynamoDB every 7.5 seconds — so in the worst case, users only have to wait half of the backend interval (7.5s) to see the updated song. This provides a more seamless, real-time feel without hitting API limits.
 
- Function Name                      | Purpose                                                                                       |
-|-----------------------------------|-----------------------------------------------------------------------------------------------|
-| `refreshSpotifyAccessToken`       | Scheduled function to refresh the Spotify access token                                        |
-| `pushMessagesToSQS`               | Pushes polling messages into an SQS queue to simulate ~15s intervals (since the shortest interval AWS EventBridge allows is 1 minute)                        |
-| `getCurrentlyPlayingSpotifyTrack` | Polls the Spotify API for the currently playing track and updates DynamoDB (triggered via SQS) |
-| `getLastPlayedTrack`              | Retrieves the most recent track from DynamoDB (used by the API Gateway)                      |
-
+| Function Name                     | Purpose                                                                                                                               |
+| --------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------- |
+| `refreshSpotifyAccessToken`       | Scheduled function to refresh the Spotify access token                                                                                |
+| `pushMessagesToSQS`               | Pushes polling messages into an SQS queue to simulate ~15s intervals (since the shortest interval AWS EventBridge allows is 1 minute) |
+| `getCurrentlyPlayingSpotifyTrack` | Polls the Spotify API for the currently playing track and updates DynamoDB (triggered via SQS)                                        |
+| `getLastPlayedTrack`              | Retrieves the most recent track from DynamoDB (used by the API Gateway)                                                               |
 
 #### Image handling
 
 You can check out how I upload and optimize images from my phone to my website in [this blog post](https://www.rolandtoth.com/posts/building-an-image-pipeline/).
 
-| Function Name                  | Purpose                                            |
-|-------------------------------|----------------------------------------------------|
-| `DropboxToS3Uploader` | Scheduled function to refresh the Spotify access token |
-| `DropboxWebhookUpdater`               | Since AWS EventBridge allows a minimum interval of 1 minute, this function helps distribute polling tasks to a queue. This enables polling every ~15s, which stays within Spotify’s rate limits.  |
-| `refreshDropboxAccessToken`               | Retrieves the current book data through the Literal Club API  |
-| `ListImagesFromS3`               | Retrieves the current book data through the Literal Club API  |
-| `getGalleryImages`               | Returns the stored images from S3 (used by the API Gateway) |
+| Function Name               | Purpose                                                                                                                                                                                          |
+| --------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `DropboxToS3Uploader`       | Scheduled function to refresh the Spotify access token                                                                                                                                           |
+| `DropboxWebhookUpdater`     | Since AWS EventBridge allows a minimum interval of 1 minute, this function helps distribute polling tasks to a queue. This enables polling every ~15s, which stays within Spotify’s rate limits. |
+| `refreshDropboxAccessToken` | Retrieves the current book data through the Literal Club API                                                                                                                                     |
+| `ListImagesFromS3`          | Retrieves the current book data through the Literal Club API                                                                                                                                     |
+| `getGalleryImages`          | Returns the stored images from S3 (used by the API Gateway)                                                                                                                                      |
 
 ## Firebase
 

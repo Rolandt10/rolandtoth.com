@@ -43,15 +43,7 @@ export default function PrivacyContent() {
       </p>
 
       <h2 className="mb-3 w-max rounded-xl bg-dark-500 px-3 py-[2px] text-sm text-dark-100">
-        4. Cookies
-      </h2>
-      <p className="mb-3 pl-3">
-        This site may use cookies required for authentication and session
-        management. No tracking or marketing cookies are used.
-      </p>
-
-      <h2 className="mb-3 w-max rounded-xl bg-dark-500 px-3 py-[2px] text-sm text-dark-100">
-        5. Your Rights
+        4. Your Rights
       </h2>
       <p className="mb-3 pl-3">
         If you wish to request data deletion or have privacy concerns, please
@@ -65,7 +57,7 @@ export default function PrivacyContent() {
       </p>
 
       <h2 className="mb-3 w-max rounded-xl bg-dark-500 px-3 py-[2px] text-sm text-dark-100">
-        6. Changes
+        5. Changes
       </h2>
       <p className="mb-3 pl-3">
         This policy may be updated occasionally. Continued use of the site after
