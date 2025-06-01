@@ -1,6 +1,7 @@
 import { MusicIcon } from "../Icons/Icons.tsx";
 import SongCard from "./SongCard.tsx";
 import { useCurrentSong } from "../../hooks/useCurrentSong.ts";
+import SongCardSkeleton from "./SongCardSkeleton.tsx";
 
 export default function CurrentSong() {
   const { song, error } = useCurrentSong();
@@ -23,7 +24,7 @@ export default function CurrentSong() {
       </>
     );
   }
-  if (!song) return <p>Loading song...</p>;
+  if (!song) return <SongCardSkeleton />;
 
   return <SongCard song={song} />;
 }

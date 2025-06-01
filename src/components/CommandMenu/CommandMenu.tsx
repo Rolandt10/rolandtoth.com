@@ -74,7 +74,7 @@ const CommandMenu = ({ isOpen, setIsOpen }) => {
 
         <Command.List>
           <Command.Empty className="pt-2 text-sm">
-            This doesn't exist yet.
+            This doesn't exist yet. Maybe next time. 😔
           </Command.Empty>
 
           {browseItems.length > 0 && (
