@@ -1,5 +1,6 @@
 ---
 import BookFallback from "./BookFallback.astro";
+import BookSkeleton from "./BookSkeleton.astro";
 
 interface Book {
   bookTitle: string;
@@ -42,6 +43,6 @@ try {
       </div>
     </a>
   ) : (
-    <BookFallback />
+    <BookSkeleton />
   )
 }
