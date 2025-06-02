@@ -6,7 +6,7 @@ Some stuff that I dare to share on the internet. [Take a look](https://www.rolan
 
 This repository primarily contains the **frontend** of the website. The frontend stack includes: [**Astro**](https://astro.build/), **React**, **Tailwind CSS**, **TypeScript**, **Vite**, **ESLint**, [**MDX**](https://mdxjs.com/), [**RadixUI**](https://www.radix-ui.com/) (used only for Modals and Tooltips), [**Quill.js**](https://quilljs.com/) (rich text editor), [**CMDK**](https://cmdk.paco.me/) (command menu).
 
-The **backend** is built using various **AWS services**, including **Lambda**, **S3**, **DynamoDB**, **API Gateway**, **CloudFront**, and **SQS** — handling tasks like image processing, polling, and other automation-heavy workflows.
+The **backend** is built using various **AWS services**, including **Lambda**, **S3**, **DynamoDB**, **API Gateway** (REST API and Web Socket API), **CloudFront**, and **SQS** — handling tasks like image processing, polling, and other automation-heavy workflows.
 
 For **authentication and commenting**, the site uses **Firebase**, which offers a simpler, frontend-friendly solution compared to managing auth flows on AWS.
 
@@ -16,7 +16,7 @@ The following section focuses on the backend.
 
 ### Lambda functions
 
-The project - as of yet - uses 11 Lambda functions, all written in JavaScript, structured around the following areas (I know the function names could've been better):
+The project - as of yet - uses 15 Lambda functions, all written in JavaScript, structured around the following areas (I know the function names could've been better):
 
 #### Currently Read Book
 
