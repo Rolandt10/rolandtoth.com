@@ -27,7 +27,7 @@ const Header = ({ currentPath }) => {
     <header className="flex items-center [grid-area:header]">
       <ul className="relative flex gap-3">
         <li className="z-10">
-          <Tooltip text="Menu" delayDuration={150}>
+          <Tooltip text="Menu" delayDuration={175}>
             <button
               onClick={() => setIsOpen(!isOpen)}
               className="flex h-10 w-10 items-center justify-center rounded-lg border border-light-300 bg-light-200 text-light-400 shadow transition-all duration-200 hover:scale-110 hover:shadow-md dark:border-dark-500 dark:bg-dark-700"
