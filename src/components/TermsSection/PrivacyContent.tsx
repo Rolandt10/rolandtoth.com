@@ -14,7 +14,7 @@ export default function PrivacyContent() {
       </p>
 
       <h2 className="mb-3 w-max rounded-xl bg-dark-500 px-3 py-[2px] text-sm text-dark-100">
-        1. What Information We Collect
+        1. What Information I Collect
       </h2>
       <ul className="mb-3 list-disc pl-6">
         <li>
@@ -22,11 +22,10 @@ export default function PrivacyContent() {
           profile picture)
         </li>
         <li>Public comments you post on this site</li>
-        <li>Basic usage data (IP address, browser type, visit timestamps)</li>
       </ul>
 
       <h2 className="mb-3 w-max rounded-xl bg-dark-500 px-3 py-[2px] text-sm text-dark-100">
-        2. How We Use Your Information
+        2. How I Use Your Information
       </h2>
       <ul className="mb-3 list-disc pl-6">
         <li>To authenticate users and enable comment posting</li>
@@ -38,7 +37,7 @@ export default function PrivacyContent() {
         3. Data Sharing
       </h2>
       <p className="mb-3 pl-3">
-        We do not sell, rent, or share your personal data with third parties.
+        I do not sell, rent, or share your personal data with third parties.
         Authentication is handled via Firebase and your selected OAuth provider.
       </p>
 
