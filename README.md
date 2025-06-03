@@ -4,7 +4,7 @@ Some stuff that I dare to share on the internet. [Take a look](https://www.rolan
 
 ## Documentation
 
-This repository primarily contains the **frontend** of the website. The frontend stack includes: [**Astro**](https://astro.build/), **React**, **Tailwind CSS**, **TypeScript**, **Vite**, **ESLint**, [**MDX**](https://mdxjs.com/), [**RadixUI**](https://www.radix-ui.com/) (used only for Modals and Tooltips), [**Quill.js**](https://quilljs.com/) (rich text editor), [**CMDK**](https://cmdk.paco.me/) (command menu).
+This repository primarily contains the **frontend** of the website. The frontend stack includes: [**Astro**](https://astro.build/), **React**, **Tailwind CSS**, **TypeScript**, **Vite**, **ESLint**, [**MDX**](https://mdxjs.com/), [**RadixUI**](https://www.radix-ui.com/) (used only for Modals and Tooltips), [**Quill.js**](https://quilljs.com/) (rich text editor), [**CMDK**](https://cmdk.paco.me/) (command menu), [**Motion**](https://motion.dev/) (a. k. a. Framer Motion).
 
 The **backend** is built using various **AWS services**, including **Lambda**, **S3**, **DynamoDB**, **API Gateway** (REST API and Web Socket API), **CloudFront**, and **SQS** — handling tasks like image processing, polling, and other automation-heavy workflows.
 
@@ -29,7 +29,7 @@ The currently read book feature on my website uses a POST GraphQL request (the [
 
 #### Currently Playing Song ("Real-time")
 
-This feature uses polling to retrieve the currently playing song from Spotify — both on the **frontend (every ~7.5s)** and the **backend (every ~15s)**. To avoid exceeding Spotify’s API rate limits from multiple users, the backend handles polling every 15 seconds and stores the result in **DynamoDB**. The client then polls DynamoDB every 7.5 seconds — so in the worst case, users only have to wait half of the backend interval (7.5s) to see the updated song. This provides a more seamless, real-time feel without hitting API limits.
+This project uses WebSocket connections to push real-time updates of the currently playing Spotify track to connected clients. The backend polls the Spotify API every ~15 seconds and updates the song info in DynamoDB. Whenever a new track is detected or playback state changes (e.g., play/pause), the backend broadcasts the update to all active WebSocket connections. This provides a seamless real-time experience without relying on client-side polling or risking Spotify API rate limits.
 
 | Function Name                     | Purpose                                                                                                                               |
 | --------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------- |
