@@ -29,7 +29,9 @@ The currently read book feature on my website uses a POST GraphQL request (the [
 
 #### Currently Playing Song ("Real-time")
 
-This project uses WebSocket connections to push real-time updates of the currently playing Spotify track to connected clients. The backend polls the Spotify API every ~15 seconds and updates the song info in DynamoDB. Whenever a new track is detected or playback state changes (e.g., play/pause), the backend broadcasts the update to all active WebSocket connections. This provides a seamless real-time experience without relying on client-side polling or risking Spotify API rate limits.
+This feature is powered by a custom Spotify API wrapper service that polls the Spotify API for the currently playing track, caches the data in DynamoDB, and broadcasts live updates to connected clients, enabling a near real-time display of Spotify activity.
+
+The project uses WebSocket connections to push updates to clients whenever a new track is detected or the playback state changes (e.g., play/pause). The backend polls the Spotify API every ~15 seconds, ensuring updates are compliant with Spotify's rate limits. By caching results and using server-side push updates, it avoids unnecessary client-side polling.
 
 | Function Name                     | Purpose                                                                                                                               |
 | --------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------- |
