@@ -21,7 +21,7 @@ export default function UserInfo({ user }: Props) {
       <button
         onClick={logout}
         type="button"
-        className="rounded-2xl border border-dark-500 px-3 dark:bg-dark-700"
+        className="rounded-2xl border border-dark-500 px-3 dark:bg-dark-700 hover:dark:border-dark-400/50"
       >
         Sign out
       </button>
