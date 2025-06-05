@@ -3,7 +3,7 @@ import FooterLink from "../Links/FooterLink.astro";
 ---
 
 <footer
-  class="flex flex-wrap border-t border-dashed border-light-300 py-20 [grid-area:footer] dark:border-dark-500/75"
+  class="flex flex-wrap border-t border-dashed border-light-300 pb-16 pt-20 [grid-area:footer] dark:border-dark-500/75"
 >
   <div class="flex w-1/2 flex-col">
     <span class="mb-8 text-light-600 dark:text-dark-0">Browse</span>
@@ -27,10 +27,12 @@ import FooterLink from "../Links/FooterLink.astro";
       </li>
     </ul>
   </div>
-  <div class="mt-16 flex w-full gap-4 text-xsm">
-    <FooterLink href="https://github.com/Rolandt10/rolandtoth.com"
-      >GitHub</FooterLink
-    >
-    <FooterLink href="/colophon">Colophon</FooterLink>
+  <div class="mt-16 flex w-full justify-between rounded-full text-xsm">
+    <div class="space-x-3">
+      <FooterLink href="https://github.com/Rolandt10/rolandtoth.com"
+        >GitHub</FooterLink
+      >
+      <FooterLink href="/colophon">Colophon</FooterLink>
+    </div>
   </div>
 </footer>

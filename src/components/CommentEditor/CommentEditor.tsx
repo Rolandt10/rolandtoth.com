@@ -69,7 +69,7 @@ export default function CommentEditor({ slug }: Props) {
         <button
           type="submit"
           onClick={handleSubmit}
-          className="absolute bottom-4 right-4 flex w-20 items-center justify-center rounded-[0.7rem] bg-dark-600 px-4 py-[0.5rem] text-sm text-white"
+          className="hover:shadow-md/50 absolute bottom-4 right-4 flex w-20 items-center justify-center rounded-[0.7rem] bg-dark-600 px-4 py-[0.5rem] text-sm text-white transition-all hover:scale-105 hover:rounded-md"
         >
           {loading ? (
             <svg
