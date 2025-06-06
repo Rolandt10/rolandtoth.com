@@ -39,6 +39,10 @@ export default function CommentEditor({ slug }: Props) {
     }
   }, []);
 
+  function resetEditor() {
+    quillEditorRef.current.setText("");
+  }
+
   async function handleSubmit(e) {
     e.preventDefault();
     setLoading(true);
@@ -53,7 +57,7 @@ export default function CommentEditor({ slug }: Props) {
         displayName: user.displayName,
         photoURL: user.photoURL,
       });
-      quillEditorRef.current.setText("");
+      resetEditor();
     } catch (err) {
       console.error("Error adding comment", err);
     } finally {
@@ -63,7 +67,7 @@ export default function CommentEditor({ slug }: Props) {
 
   return (
     <div className="relative">
-      {user && <UserInfo user={user} />}
+      {user && <UserInfo user={user} resetEditor={resetEditor} />}
       <form className="relative rounded-xl">
         <div ref={editorRef} />
         <button

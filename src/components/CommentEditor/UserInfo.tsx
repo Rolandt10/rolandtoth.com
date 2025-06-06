@@ -3,10 +3,14 @@ import { signOut, type User } from "firebase/auth";
 
 interface Props {
   user: User;
+  resetEditor: () => void;
 }
 
-export default function UserInfo({ user }: Props) {
-  const logout = () => signOut(auth);
+export default function UserInfo({ user, resetEditor }: Props) {
+  const logout = () => {
+    signOut(auth);
+    resetEditor();
+  };
 
   return (
     <div className="flex justify-between pb-4 text-xsm">
