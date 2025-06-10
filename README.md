@@ -28,21 +28,24 @@ The currently read book feature on my website uses a POST GraphQL request (the [
 | `getCurrentBook`               | Retrieves the current book data through the Literal Club API |
 
 #### Currently Playing Song ("Real-time")
+**Frontend**:
+
+The frontend includes a custom React hook (useCurrentSong) that manages all communication with the backend via WebSocket. It features built-in pinging and automatic reconnection to ensure a stable and persistent connection.
+
+**Backend**:
 
 This feature is powered by a custom Spotify API wrapper service that polls the Spotify API for the currently playing track, caches the data in DynamoDB, and broadcasts live updates to connected clients, enabling a near real-time display of Spotify activity.
 
 The project uses WebSocket connections to push updates to clients whenever a new track is detected or the playback state changes (e.g., play/pause). The backend polls the Spotify API every ~15 seconds, ensuring updates are compliant with Spotify's rate limits. By caching results and using server-side push updates, it avoids unnecessary client-side polling.
 
 <img width="1383" alt="kép" src="https://github.com/user-attachments/assets/391bdb8e-fd0c-48d9-818a-b35d03382c2a" />
-
-
+(small labels - like λ (Lambda function) and DynamoDB - describe the AWS services in use)
 
 | Function Name                     | Purpose                                                                                                                               |
 | --------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------- |
 | `refreshSpotifyAccessToken`       | Scheduled function to refresh the Spotify access token                                                                                |
 | `pushMessagesToSQS`               | Pushes polling messages into an SQS queue to simulate ~15s intervals (since the shortest interval AWS EventBridge allows is 1 minute) |
 | `getCurrentlyPlayingSpotifyTrack` | Polls the Spotify API for the currently playing track and updates DynamoDB (triggered via SQS)                                        |
-| `getLastPlayedTrack`              | Retrieves the most recent track from DynamoDB (used by the API Gateway)                                                               |
 
 #### Image handling
 
