@@ -33,6 +33,10 @@ This feature is powered by a custom Spotify API wrapper service that polls the S
 
 The project uses WebSocket connections to push updates to clients whenever a new track is detected or the playback state changes (e.g., play/pause). The backend polls the Spotify API every ~15 seconds, ensuring updates are compliant with Spotify's rate limits. By caching results and using server-side push updates, it avoids unnecessary client-side polling.
 
+<img width="1383" alt="kép" src="https://github.com/user-attachments/assets/391bdb8e-fd0c-48d9-818a-b35d03382c2a" />
+
+
+
 | Function Name                     | Purpose                                                                                                                               |
 | --------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------- |
 | `refreshSpotifyAccessToken`       | Scheduled function to refresh the Spotify access token                                                                                |
