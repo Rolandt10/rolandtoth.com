@@ -4,7 +4,7 @@ Some stuff that I dare to share on the internet. [Take a look](https://www.rolan
 
 ## Documentation
 
-This repository primarily contains the **frontend** of the website. The frontend stack includes: [**Astro**](https://astro.build/), **React**, **Tailwind CSS**, **TypeScript**, **Vite**, **ESLint**, [**MDX**](https://mdxjs.com/), [**RadixUI**](https://www.radix-ui.com/) (used only for Modals and Tooltips), [**Quill.js**](https://quilljs.com/) (rich text editor), [**CMDK**](https://cmdk.paco.me/) (command menu), [**Motion**](https://motion.dev/) (a. k. a. Framer Motion).
+This repository primarily contains the **frontend** of the website. The frontend stack includes: [**Astro**](https://astro.build/), **React**, **Tailwind CSS**, **TypeScript**, **Vite**, **ESLint**, [**MDX**](https://mdxjs.com/), [**RadixUI**](https://www.radix-ui.com/) (used only for Modals and Tooltips), [**Quill.js**](https://quilljs.com/) (rich text editor), [**CMDK**](https://cmdk.paco.me/) (command menu), [**useSWR**](https://swr.vercel.app/), [**Motion**](https://motion.dev/) (a. k. a. Framer Motion).
 
 The **backend** is built using various **AWS services**, including **Lambda**, **S3**, **DynamoDB**, **API Gateway** (REST API and Web Socket API), **CloudFront**, and **SQS** — handling tasks like image processing, polling, and other automation-heavy workflows.
 
@@ -28,17 +28,73 @@ The currently read book feature on my website uses a POST GraphQL request (the [
 | `getCurrentBook`               | Retrieves the current book data through the Literal Club API |
 
 #### Currently Playing Song ("Real-time")
+**Frontend**:
+
+The frontend includes a custom React hook (useCurrentSong) that manages all communication with the backend via WebSocket. It features built-in pinging and automatic reconnection to ensure a stable and persistent connection.
+
+**Backend**:
 
 This feature is powered by a custom Spotify API wrapper service that polls the Spotify API for the currently playing track, caches the data in DynamoDB, and broadcasts live updates to connected clients, enabling a near real-time display of Spotify activity.
 
 The project uses WebSocket connections to push updates to clients whenever a new track is detected or the playback state changes (e.g., play/pause). The backend polls the Spotify API every ~15 seconds, ensuring updates are compliant with Spotify's rate limits. By caching results and using server-side push updates, it avoids unnecessary client-side polling.
+
+## Overview
+
+The system:
+- Periodically checks what song I am listening to on Spotify.
+- Stores the song data in DynamoDB.
+- Detects changes in the currently playing song.
+- Broadcasts song updates to connected visitors in real time.
+
+## Flow Summary
+
+1. **User listens to Spotify**.
+2. **Spotify API** provides the currently playing track.
+3. **AWS Lambda** (`getCurrentlyPlayingSpotifyTrack`) polls the track info every 15 seconds.
+4. **Song data** is saved to DynamoDB (`AllTimeSpotifyTrack`).
+5. If the song has changed:
+   - It triggers a broadcast via another **Lambda** (`SpotifySongUpdateBroadcast`).
+   - Broadcast is sent to all connected clients using **API Gateway WebSockets**.
+6. **Visitor clients** receive updates in real time.
+
+## Access Token Handling
+
+- A separate **Lambda function** (`refreshSpotifyAccessToken`) runs hourly to refresh the Spotify access token.
+- The new token is saved securely in **AWS Secrets Manager**.
+- `getCurrentlyPlayingSpotifyTrack` retrieves the token when querying the Spotify API.
+
+## Data Storage
+
+- `AllTimeSpotifyTrack` (DynamoDB): stores a history of played tracks.
+- `WebSocketConnections` (DynamoDB): stores active WebSocket connection IDs for broadcasting.
+
+## Scheduling
+
+- `pushMessagesToSQS` Lambda is triggered every minute by **AWS EventBridge**.
+- It ensures `getCurrentlyPlayingSpotifyTrack` runs every 15 seconds.
+
+## Clients
+
+- Real-time song updates are pushed to all WebSocket-connected clients (visitors).
+
+## Technologies Used
+
+- **Spotify API**
+- **AWS Lambda**
+- **AWS DynamoDB**
+- **AWS API Gateway (WebSockets)**
+- **AWS EventBridge**
+- **AWS Secrets Manager**
+- **AWS SQS** (optional, for decoupling)
+
+<img width="1383" alt="kép" src="https://github.com/user-attachments/assets/391bdb8e-fd0c-48d9-818a-b35d03382c2a" />
+(small labels - like λ (Lambda function) and DynamoDB - describe the AWS services in use)
 
 | Function Name                     | Purpose                                                                                                                               |
 | --------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------- |
 | `refreshSpotifyAccessToken`       | Scheduled function to refresh the Spotify access token                                                                                |
 | `pushMessagesToSQS`               | Pushes polling messages into an SQS queue to simulate ~15s intervals (since the shortest interval AWS EventBridge allows is 1 minute) |
 | `getCurrentlyPlayingSpotifyTrack` | Polls the Spotify API for the currently playing track and updates DynamoDB (triggered via SQS)                                        |
-| `getLastPlayedTrack`              | Retrieves the most recent track from DynamoDB (used by the API Gateway)                                                               |
 
 #### Image handling
 
