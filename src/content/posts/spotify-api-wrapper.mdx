@@ -1,0 +1,64 @@
+---
+title: "Building a real-time Spotify integration with AWS"
+slug: "real-time-spotify-tracker"
+date: "2024-11-14"
+---
+
+import Resources from "../../components/MdxComponents/Resources.astro";
+import ImageModal from "../../components/MdxComponents/ImageModal.astro";
+import HighLightText from "../../components/MdxComponents/HighLightText.astro";
+
+One of the small but fun features of my personal website is a real-time display of what I'm currently listening to on Spotify. At first glance, this seems like a relatively straightforward integration: fetch the current track from the Spotify API and show it. But as with most things, the devil is in the details. In this post, I’ll walk through how I built a custom wrapper around the Spotify API to make this feature work in real time and the lessons I learned along the way.
+
+# The problem: live data from a private API
+
+Spotify does provide an endpoint to get the “currently playing” track. However, this data is private and it requires authentication. That means I needed to figure out how to securely identify myself to Spotify on the backend, without needing to log in every time or hard-code anything.
+
+The solution was to use a refresh token and an access token. I store both tokens in AWS Secrets Manager, and I use a Lambda function to refresh the access token every hour. This function is triggered on a schedule using EventBridge as shown below.
+
+<ImageModal
+  src="spotify-wrapper-auth.png"
+  alt=""
+  caption="The part responsible for authentication, framed in green"
+/>
+
+# Polling more frequently than AWS EventBridge allows
+
+Spotify’s “currently playing” track can change at any moment — skipping or pausing a song all affect the playback state. Naturally, I wanted my website to reflect these changes almost instantly. However, I ran into a limitation: Amazon EventBridge, which I initially considered for scheduling updates, only allows rules to run at one-minute intervals — far too slow for a live music feed.
+
+My first attempt involved having the frontend poll the Spotify API directly. While this worked in theory, it quickly became clear that it wouldn’t scale — every visitor to the site would trigger separate requests, quickly exhausting rate limits and putting unnecessary load on the system.
+
+To solve this, I moved the polling logic to the backend and built a lightweight polling loop using Amazon SQS and Lambda. Each cycle starts by sending a delayed message to an SQS queue, configured with a 15-second delay. Once the delay expires, the message triggers a Lambda function that fetches the currently playing track from the Spotify API using a fresh access token, stores the song data in DynamoDB, and then sends another delayed message back to the queue to repeat the cycle. This creates a self-rescheduling loop that polls Spotify every 15 seconds — fast enough to feel real-time while staying within API limits. After experimenting with different intervals, I found that 15 seconds was the right balance between responsiveness and avoiding Spotify’s rate-limiting.
+
+Later on, I realized that the frontend didn’t need to poll at all. Since all song data was already being written to DynamoDB, I leveraged DynamoDB Streams and WebSockets to push updates to the browser in real time. This eliminated the need for client-side polling altogether, reducing both latency and load on the API Gateway.
+
+<ImageModal
+  src="spotify-wrapper-polling.png"
+  alt=""
+  caption="The part responsible for polling the currently playing song, framed in orange"
+/>
+
+# Broadcasting updates via WebSockets
+
+What makes this feature stand out is that song updates appear live on the site — with no need to refresh. This real-time behavior is made possible through WebSockets, using AWS API Gateway. When the Lambda function responsible for fetching the current track writes new song data to DynamoDB, it triggers a DynamoDB Stream event. A separate Lambda function listens for these stream events and broadcasts the updated track information to all connected WebSocket clients. These clients are tracked using a table of connection IDs, which is automatically updated as users connect or disconnect. To ensure the first song fetch happens promptly after a new client connects, I created a dedicated Lambda function for polling the current track — this couldn't be done directly inside the <HighLightText>$connect</HighLightText> route, since the WebSocket connection isn't fully established at that point. This setup allows the server to push updates to clients, eliminating the need for repeated client-side polling.
+
+<ImageModal
+  src="spotify-wrapper-broadcasting.png"
+  alt=""
+  caption="The part responsible for broadcasting the stored song, framed in blue"
+/>
+
+# Conclusion
+
+While this feature might seem minor — just displaying the currently playing song — it turned out to be a valuable learning exercise. It pushed me to use the Spotify API beyond simple client-side OAuth, handle access and refresh token lifecycles securely, and orchestrate delayed polling using SQS to work around API rate limits. Additionally, it involved managing real-time infrastructure through WebSockets and handling active connection management.
+
+<Resources
+  items={[
+    {
+      author: "AWS Repost Community",
+      title:
+        "Triggering Amazon EventBridge schedules in intervals less then 1 minute",
+      url: "https://repost.aws/questions/QURl9MC_sxTVWtJsMjDvwnlA/triggering-amazon-eventbridge-schedules-in-intervals-less-then-1-minute",
+    },
+  ]}
+/>

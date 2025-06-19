@@ -28,6 +28,9 @@ const { title } = Astro.props;
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
     <link rel="manifest" href="/site.webmanifest" />
     <meta name="generator" content={Astro.generator} />
+    <script
+      src="https://www.google.com/recaptcha/api.js?render=6LfP3l0rAAAAAOw82cBMJ6QJwlpqAbdsHXOXtq9V"
+    ></script>
     <title>{title}</title>
   </head>
   <body class="mx-6 mt-14 h-full font-inter text-base" id="astro-root">
@@ -36,7 +39,7 @@ const { title } = Astro.props;
 </html>
 <style is:global>
   [cmdk-overlay] {
-    @apply bg-light-600/20 dark:bg-dark-600/40;
+    @apply bg-light-600/20 dark:bg-dark-600/20;
     @apply fixed left-0 top-0;
     @apply h-full w-full;
     @apply z-20;

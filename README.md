@@ -4,7 +4,7 @@ Some stuff that I dare to share on the internet. [Take a look](https://www.rolan
 
 ## Documentation
 
-This repository primarily contains the **frontend** of the website. The frontend stack includes: [**Astro**](https://astro.build/), **React**, **Tailwind CSS**, **TypeScript**, **Vite**, **ESLint**, [**MDX**](https://mdxjs.com/), [**RadixUI**](https://www.radix-ui.com/) (used only for Modals and Tooltips), [**Quill.js**](https://quilljs.com/) (rich text editor), [**CMDK**](https://cmdk.paco.me/) (command menu), [**Motion**](https://motion.dev/) (a. k. a. Framer Motion).
+This repository primarily contains the **frontend** of the website. The frontend stack includes: [**Astro**](https://astro.build/), **React**, **Tailwind CSS**, **TypeScript**, **Vite**, **ESLint**, [**MDX**](https://mdxjs.com/), [**RadixUI**](https://www.radix-ui.com/) (used only for Modals and Tooltips), [**Quill.js**](https://quilljs.com/) (rich text editor), [**CMDK**](https://cmdk.paco.me/) (command menu), [**useSWR**](https://swr.vercel.app/), [**Motion**](https://motion.dev/) (a. k. a. Framer Motion).
 
 The **backend** is built using various **AWS services**, including **Lambda**, **S3**, **DynamoDB**, **API Gateway** (REST API and Web Socket API), **CloudFront**, and **SQS** — handling tasks like image processing, polling, and other automation-heavy workflows.
 
@@ -33,12 +33,14 @@ This feature is powered by a custom Spotify API wrapper service that polls the S
 
 The project uses WebSocket connections to push updates to clients whenever a new track is detected or the playback state changes (e.g., play/pause). The backend polls the Spotify API every ~15 seconds, ensuring updates are compliant with Spotify's rate limits. By caching results and using server-side push updates, it avoids unnecessary client-side polling.
 
+You can read more about it in this [blog post](https://www.rolandtoth.com/posts/real-time-spotify-tracker).
+
+
 | Function Name                     | Purpose                                                                                                                               |
 | --------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------- |
 | `refreshSpotifyAccessToken`       | Scheduled function to refresh the Spotify access token                                                                                |
 | `pushMessagesToSQS`               | Pushes polling messages into an SQS queue to simulate ~15s intervals (since the shortest interval AWS EventBridge allows is 1 minute) |
 | `getCurrentlyPlayingSpotifyTrack` | Polls the Spotify API for the currently playing track and updates DynamoDB (triggered via SQS)                                        |
-| `getLastPlayedTrack`              | Retrieves the most recent track from DynamoDB (used by the API Gateway)                                                               |
 
 #### Image handling
 
