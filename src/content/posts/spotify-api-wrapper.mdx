@@ -17,7 +17,7 @@ Spotify does provide an endpoint to get the “currently playing” track. Howev
 The solution was to use a refresh token and an access token. I store both tokens in AWS Secrets Manager, and I use a Lambda function to refresh the access token every hour. This function is triggered on a schedule using EventBridge as shown below.
 
 <ImageModal
-  src="spotify-wrapper-auth.png"
+  src="/posts/real-time-spotify-tracker/spotify-wrapper-auth.png"
   alt=""
   caption="The part responsible for authentication, framed in green"
 />
@@ -33,7 +33,7 @@ To solve this, I moved the polling logic to the backend and built a lightweight 
 Later on, I realized that the frontend didn’t need to poll at all. Since all song data was already being written to DynamoDB, I leveraged DynamoDB Streams and WebSockets to push updates to the browser in real time. This eliminated the need for client-side polling altogether, reducing both latency and load on the API Gateway.
 
 <ImageModal
-  src="spotify-wrapper-polling.png"
+  src="/posts/real-time-spotify-tracker/spotify-wrapper-polling.png"
   alt=""
   caption="The part responsible for polling the currently playing song, framed in orange"
 />
@@ -43,7 +43,7 @@ Later on, I realized that the frontend didn’t need to poll at all. Since all s
 What makes this feature stand out is that song updates appear live on the site — with no need to refresh. This real-time behavior is made possible through WebSockets, using AWS API Gateway. When the Lambda function responsible for fetching the current track writes new song data to DynamoDB, it triggers a DynamoDB Stream event. A separate Lambda function listens for these stream events and broadcasts the updated track information to all connected WebSocket clients. These clients are tracked using a table of connection IDs, which is automatically updated as users connect or disconnect. To ensure the first song fetch happens promptly after a new client connects, I created a dedicated Lambda function for polling the current track — this couldn't be done directly inside the <HighLightText>$connect</HighLightText> route, since the WebSocket connection isn't fully established at that point. This setup allows the server to push updates to clients, eliminating the need for repeated client-side polling.
 
 <ImageModal
-  src="spotify-wrapper-broadcasting.png"
+  src="/posts/real-time-spotify-tracker/spotify-wrapper-broadcasting.png"
   alt=""
   caption="The part responsible for broadcasting the stored song, framed in blue"
 />
