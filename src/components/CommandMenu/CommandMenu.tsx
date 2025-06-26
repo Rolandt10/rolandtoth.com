@@ -71,6 +71,12 @@ const CommandMenu = ({ isOpen, setIsOpen }) => {
     },
   ].filter((item) => filterItem(item.name));
 
+  const SPRING = {
+    type: "spring",
+    stiffness: 300,
+    damping: 30,
+  };
+
   return (
     isOpen && (
       <Command.Dialog
@@ -108,6 +114,7 @@ const CommandMenu = ({ isOpen, setIsOpen }) => {
                     <motion.div
                       className="absolute -inset-x-3 inset-y-0 dark:bg-dark-500"
                       layoutId="hovered-backdrop"
+                      transition={SPRING}
                       initial={{
                         borderRadius: 8,
                       }}
@@ -153,6 +160,7 @@ const CommandMenu = ({ isOpen, setIsOpen }) => {
                       initial={{
                         borderRadius: 8,
                       }}
+                      transition={SPRING}
                     >
                       <div className="absolute right-3 top-1/2 -translate-y-1/2">
                         <ArrowRightIcon size={16} />
