@@ -1,20 +1,16 @@
 import { Command } from "cmdk";
 import { useEffect, useState } from "react";
-import { motion } from "framer-motion";
+import { SearchIcon } from "../Icons/Icons";
+import { CommandMenuContext } from "../../contexts/CommandMenuContext";
 
-import {
-  ApertureIcon,
-  ArrowRightIcon,
-  BookIcon,
-  EmailIcon,
-  HomeIcon,
-  SearchIcon,
-  TwitterIcon,
-} from "../Icons/Icons";
+interface Props {
+  isOpen: boolean;
+  setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  children: React.ReactNode;
+}
 
-const CommandMenu = ({ isOpen, setIsOpen }) => {
-  const [query, setQuery] = useState("");
-  const [hoveredItem, setHoveredItem] = useState(null);
+const CommandMenu = ({ isOpen, setIsOpen, children }: Props) => {
+  const [query, setQuery] = useState<string>("");
 
   useEffect(() => {
     const down = (e) => {
@@ -40,43 +36,6 @@ const CommandMenu = ({ isOpen, setIsOpen }) => {
     return text.toLowerCase().includes(query.toLowerCase());
   };
 
-  const browseItems = [
-    {
-      name: "Snapshots",
-      slug: "snapshots",
-      icon: <ApertureIcon size={16} />,
-      href: "/snapshots",
-    },
-    { name: "Home", slug: "home", icon: <HomeIcon size={16} />, href: "/" },
-    {
-      name: "Posts",
-      slug: "posts",
-      icon: <BookIcon size={16} />,
-      href: "/posts",
-    },
-  ].filter((item) => filterItem(item.name));
-
-  const contactItems = [
-    {
-      name: "Twitter / X",
-      slug: "twitter",
-      icon: <TwitterIcon size={15} stroke-width="0.1" />,
-      href: "https://x.com/rlndtth",
-    },
-    {
-      name: "E-mail",
-      slug: "email",
-      icon: <EmailIcon size={16} />,
-      href: "mailto:hi@rolandtoth.com",
-    },
-  ].filter((item) => filterItem(item.name));
-
-  const SPRING = {
-    type: "spring",
-    stiffness: 300,
-    damping: 30,
-  };
-
   return (
     isOpen && (
       <Command.Dialog
@@ -98,92 +57,9 @@ const CommandMenu = ({ isOpen, setIsOpen }) => {
             This doesn't exist yet. Maybe next time.{" "}
             <span className="text-lg">😔</span>
           </Command.Empty>
-
-          {browseItems.length > 0 && (
-            <Command.Group heading="Browse">
-              {browseItems.map(({ name, slug, icon, href }) => (
-                <Command.Item
-                  key={slug}
-                  className="relative"
-                  style={{
-                    zIndex: hoveredItem === slug ? 1 : 2,
-                  }}
-                  onMouseLeave={() => setHoveredItem(null)}
-                >
-                  {hoveredItem === slug && (
-                    <motion.div
-                      className="absolute -inset-x-3 inset-y-0 dark:bg-dark-500"
-                      layoutId="hovered-backdrop"
-                      transition={SPRING}
-                      initial={{
-                        borderRadius: 8,
-                      }}
-                    >
-                      <div className="absolute right-3 top-1/2 -translate-y-1/2">
-                        <ArrowRightIcon size={16} />
-                      </div>
-                    </motion.div>
-                  )}
-
-                  <a
-                    href={href}
-                    className="group relative flex justify-between"
-                    onMouseEnter={() => setHoveredItem(slug)}
-                  >
-                    <div className="flex items-center gap-3">
-                      {icon}
-                      <span className="transition-all delay-75 dark:group-hover:text-dark-100">
-                        {name}
-                      </span>
-                    </div>
-                  </a>
-                </Command.Item>
-              ))}
-            </Command.Group>
-          )}
-
-          {contactItems.length > 0 && (
-            <Command.Group heading="Contact">
-              {contactItems.map(({ name, slug, icon, href }) => (
-                <Command.Item
-                  key={slug}
-                  className="relative"
-                  style={{
-                    zIndex: hoveredItem === slug ? 1 : 2,
-                  }}
-                  onMouseLeave={() => setHoveredItem(null)}
-                >
-                  {hoveredItem === slug && (
-                    <motion.div
-                      className="absolute -inset-x-3 inset-y-0 dark:bg-dark-500"
-                      layoutId="hovered-backdrop"
-                      initial={{
-                        borderRadius: 8,
-                      }}
-                      transition={SPRING}
-                    >
-                      <div className="absolute right-3 top-1/2 -translate-y-1/2">
-                        <ArrowRightIcon size={16} />
-                      </div>
-                    </motion.div>
-                  )}
-
-                  <a
-                    href={href}
-                    className="group relative flex justify-between"
-                    onMouseEnter={() => setHoveredItem(slug)}
-                  >
-                    <div className="flex items-center gap-3">
-                      {icon}
-                      <span className="transition-all delay-75 dark:group-hover:text-dark-100">
-                        {name}
-                      </span>
-                    </div>
-                  </a>
-                </Command.Item>
-              ))}
-            </Command.Group>
-          )}
+          <CommandMenuContext.Provider value={{ query, filterItem }}>
+            {children}
+          </CommandMenuContext.Provider>
         </Command.List>
       </Command.Dialog>
     )
