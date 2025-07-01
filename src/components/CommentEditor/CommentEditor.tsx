@@ -4,18 +4,28 @@ import { auth, db } from "../../lib/firebase";
 import { collection, addDoc, serverTimestamp } from "firebase/firestore";
 import Quill from "quill";
 import "quill/dist/quill.snow.css";
-import AuthOverlay from "./AuthOverlay";
-import UserInfo from "./UserInfo";
+import AuthOverlay from "../AuthOverlay/AuthOverlay";
+import UserLoginInfo from "../UserLoginInfo/UserLoginInfo";
 import { toast, ToastContainer, Zoom } from "react-toastify";
+import { AnimatePresence, motion } from "framer-motion";
 
 interface Props {
   slug: string;
 }
 
+const SPRING = {
+  type: "spring",
+  stiffness: 600,
+  damping: 50,
+  duration: 0.5,
+};
+
 export default function CommentEditor({ slug }: Props) {
   const [user, setUser] = useState<User | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
   const [captchaToken, setCaptchaToken] = useState(null);
+  const [commentLength, setCommentLength] = useState(0);
+
   const editorRef = useRef(null); // ref to the editor container itself
   const quillEditorRef = useRef<Quill | null>(null); // ref to the object returned by new Quill(...)
   const recaptchaRef = useRef(null);
@@ -32,12 +42,15 @@ export default function CommentEditor({ slug }: Props) {
         placeholder: "Share your thoughts...",
         modules: {
           toolbar: [
-            [{ header: [1, 2, 3, false] }],
             ["bold", "italic", "underline", "link"],
             [{ list: "ordered" }, { list: "bullet" }],
-            ["blockquote", "code-block"],
           ],
         },
+      });
+
+      quillEditorRef.current.on("text-change", () => {
+        const text = quillEditorRef.current.getText().trim();
+        setCommentLength(text.length);
       });
     }
   }, []);
@@ -48,6 +61,7 @@ export default function CommentEditor({ slug }: Props) {
 
   function resetEditor() {
     quillEditorRef.current.setText("");
+    setCommentLength(0);
   }
 
   function filterEmptyTextInput() {
@@ -71,6 +85,7 @@ export default function CommentEditor({ slug }: Props) {
             .then((token) => {
               setCaptchaToken(token);
               resolve(token);
+              console.log(token);
             })
             .catch(reject);
         });
@@ -113,15 +128,26 @@ export default function CommentEditor({ slug }: Props) {
 
   return (
     <div className="relative">
-      {user && <UserInfo user={user} resetEditor={resetEditor} />}
+      <AnimatePresence>
+        {user && (
+          <motion.div
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: "auto", opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            transition={SPRING}
+          >
+            <UserLoginInfo user={user} resetEditor={resetEditor} />
+          </motion.div>
+        )}
+      </AnimatePresence>
       <form className="relative rounded-xl">
         <div ref={editorRef} />
 
         <button
-          disabled={true}
+          disabled={loading || commentLength < 5}
           type="submit"
           onClick={handleSubmit}
-          className="hover:shadow-md/50 absolute bottom-4 right-4 flex w-20 items-center justify-center rounded-[0.7rem] bg-dark-600 px-4 py-[0.5rem] text-sm text-white transition-all hover:scale-105 hover:rounded-md"
+          className="hover:shadow-md/50 absolute bottom-4 right-4 flex w-20 cursor-pointer items-center justify-center rounded-[0.7rem] bg-dark-600 px-4 py-[0.5rem] text-sm text-white transition-all hover:scale-105 hover:rounded-md disabled:transform-none disabled:cursor-not-allowed disabled:bg-dark-600/90 disabled:hover:rounded-[0.7rem]"
         >
           {loading ? (
             <svg
@@ -150,6 +176,7 @@ export default function CommentEditor({ slug }: Props) {
         </button>
         {!user && <AuthOverlay />}
       </form>
+
       <ToastContainer
         transition={Zoom}
         position="bottom-center"
