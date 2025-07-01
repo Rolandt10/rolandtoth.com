@@ -1,18 +1,10 @@
-import {
-  GoogleAuthProvider,
-  GithubAuthProvider,
-  signInWithPopup,
-} from "firebase/auth";
-import { auth } from "../../lib/firebase";
 import { GithubIcon, GoogleIcon } from "../Icons/Icons";
+import SocialLoginButton from "../SocialLoginButton/SocialLoginButton";
+import { loginWithGoogle, loginWithGithub } from "../../utils/authProviders";
 
 export default function AuthOverlay() {
-  const googleProvider = new GoogleAuthProvider();
-  const githubProvider = new GithubAuthProvider();
-  const loginGoogle = () =>
-    signInWithPopup(auth, googleProvider).catch(console.error);
-  const loginGitHub = () =>
-    signInWithPopup(auth, githubProvider).catch(console.error);
+  const loginGoogle = () => loginWithGoogle().catch(console.error);
+  const loginGitHub = () => loginWithGithub().catch(console.error);
 
   return (
     <div
@@ -25,27 +17,25 @@ export default function AuthOverlay() {
         Sign in to leave a comment
       </p>
       <div className="flex gap-2">
-        <button
+        <SocialLoginButton
           onClick={loginGoogle}
           type="button"
-          className="flex items-center gap-1 rounded-2xl border border-dark-400/50 px-3 py-1 text-sm text-dark-500 shadow-sm hover:border-dark-500/50 dark:bg-dark-0"
-        >
-          <GoogleIcon
-            size={15}
-            viewBox="0 0 58 58"
-            stroke-width="4"
-            className="text-dark-400"
-          />
-          <span>Google</span>
-        </button>
-        <button
+          label="Google"
+          icon={
+            <GoogleIcon
+              size={15}
+              viewBox="0 0 58 58"
+              strokeWidth="4"
+              className="text-dark-400"
+            />
+          }
+        />
+        <SocialLoginButton
           onClick={loginGitHub}
           type="button"
-          className="flex items-center gap-1 rounded-2xl border border-dark-400/50 px-3 py-1 text-sm text-dark-500 shadow-sm hover:border-dark-500/50 dark:bg-dark-0"
-        >
-          <GithubIcon size={14} className="text-dark-400" />
-          <span>GitHub</span>
-        </button>
+          label="Github"
+          icon={<GithubIcon size={14} className="text-dark-400" />}
+        />
       </div>
     </div>
   );
