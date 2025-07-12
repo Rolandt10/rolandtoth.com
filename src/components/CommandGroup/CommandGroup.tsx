@@ -41,12 +41,12 @@ export default function CommandGroup({
         >
           {hoveredItem === slug && (
             <motion.div
-              className="absolute -inset-x-3 inset-y-0 dark:bg-dark-500"
+              className="absolute -inset-x-3 -inset-y-px dark:bg-dark-500"
               layoutId="hovered-backdrop"
               transition={SPRING}
               initial={{ borderRadius: 8 }}
             >
-              <div className="absolute right-3 top-1/2 -translate-y-1/2">
+              <div className="group absolute right-3 top-1/2 -translate-y-1/2">
                 <ArrowRightIcon size={16} />
               </div>
             </motion.div>
@@ -54,7 +54,7 @@ export default function CommandGroup({
 
           <a
             href={href}
-            className="group relative flex justify-between"
+            className="relative flex justify-between"
             onMouseEnter={() => setHoveredItem(slug)}
           >
             <div className="flex items-center gap-3">
