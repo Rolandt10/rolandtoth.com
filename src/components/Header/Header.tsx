@@ -113,7 +113,7 @@ const Header = ({ currentPath }) => {
                   <HomeIcon
                     size={18}
                     className="dark:text-dark-100"
-                    stroke-width="1.8"
+                    strokeWidth="1.8"
                   />
                 </motion.a>
               ) : (
@@ -124,7 +124,7 @@ const Header = ({ currentPath }) => {
                   <HomeIcon
                     size={18}
                     className="dark:text-dark-100"
-                    stroke-width="1.8"
+                    strokeWidth="1.8"
                   />
                 </a>
               )}
