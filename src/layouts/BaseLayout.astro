@@ -46,10 +46,11 @@ const { title } = Astro.props;
   }
 
   [cmdk-dialog] {
-    @apply absolute left-2/4 top-2/4 ml-2 -translate-x-2/4 -translate-y-2/4;
+    @apply absolute inset-0;
     @apply border border-light-400/25 dark:border-dark-400/30;
     @apply rounded-xl;
-    @apply w-full max-w-sm;
+    @apply h-max w-full max-w-sm;
+    @apply m-auto;
     @apply shadow-md;
     @apply px-5 pb-2 pt-5;
     @apply font-inter;
@@ -75,9 +76,9 @@ const { title } = Astro.props;
     @apply mb-1;
   }
 
-  [cmdk-group-items] {
+  /* [cmdk-group-items] {
     @apply flex flex-col;
-  }
+  } */
 
   [cmdk-item] a {
     @apply flex items-center gap-3;
@@ -90,18 +91,23 @@ const { title } = Astro.props;
     @apply px-3;
   }
 
-  [cmdk-item] a:hover {
+  /* [cmdk-item] a:hover {
     @apply bg-light-300/45 dark:bg-dark-500;
     @apply rounded-md dark:text-dark-100;
     @apply -mx-3;
     @apply px-3;
+  } */
+
+  html,
+  body {
+    background-color: #090a0b;
   }
 
-  .markdown-content p:not(:last-child) {
-    margin-bottom: 2rem;
+  .markdown-content > *:not(:last-child) {
+    margin-bottom: 2.4rem;
   }
 
-  .markdown-content p {
+  .markdown-content > p {
     line-height: 1.6;
   }
 
@@ -192,5 +198,31 @@ const { title } = Astro.props;
 
   span#ql-picker-options-0 {
     z-index: 10;
+  }
+
+  .scroll-trigger:hover .animate-on-hover {
+    animation: scroll-left linear forwards;
+  }
+
+  @keyframes scroll-left {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-100%);
+    }
+  }
+
+  .mapboxgl-ctrl-logo,
+  .mapboxgl-ctrl-attrib {
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+  }
+
+  #map-container:hover .mapboxgl-ctrl-logo,
+  #map-container:hover .mapboxgl-ctrl-attrib {
+    opacity: 1;
+    pointer-events: auto;
   }
 </style>
