@@ -5,7 +5,7 @@ import TermsContent from "./TermsContent";
 export default function TermsSection() {
   return (
     <div className="my-2 text-xsm">
-      *by signing in, you consent to the website’s{" "}
+      *by signing in, you consent to the{" "}
       <InlineModal title="Terms of Service">
         <TermsContent />
       </InlineModal>{" "}
