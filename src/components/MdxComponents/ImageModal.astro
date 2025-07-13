@@ -8,13 +8,15 @@ interface ImageData {
 const { src, alt, caption }: ImageData = Astro.props as ImageData;
 ---
 
-<figure class="relative mb-8 w-full">
+<figure class="-mx-6 mb-8 w-[calc(100%+3rem)] xl:mx-auto xl:max-w-[75rem]">
   <img
     src={src}
     alt={alt}
-    class="relative left-1/2 w-[min(100vw,calc(100%+19rem))] max-w-none -translate-x-1/2 rounded-none transition-all duration-300 ease-in-out sm:rounded-lg"
+    class="h-auto w-full max-w-none rounded-none xl:rounded-2xl"
   />
-  <figcaption class="border-b py-2 text-xsm dark:border-dark-500">
+  <figcaption
+    class="mx-auto max-w-[620px] border-b py-2 text-xsm max-sm:mx-6 dark:border-dark-500"
+  >
     {caption}
   </figcaption>
 </figure>
