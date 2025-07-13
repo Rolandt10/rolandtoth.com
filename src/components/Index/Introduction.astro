@@ -1,36 +1,41 @@
 ---
 import TextLink from "../Links/TextLink";
+import Tooltip from "../Tooltip/Tooltip";
 ---
 
-<section class="my-32 flex flex-col gap-0">
-  <h1 class="text-base tracking-wide text-light-600 dark:text-dark-0">
-    Roland Tóth
-  </h1>
-  <p class="text-base font-normal text-light-500/80 dark:text-dark-200">
-    /ˈrolɒnd toːt/
-  </p>
-</section>
-<section class="mb-24 flex flex-col gap-3 text-light-500/80 dark:text-dark-200">
-  <h2 class="text-base tracking-wide text-light-600 dark:text-dark-0">
-    Welcome!
-  </h2>
-  <p class="text-justify">
-    Hi, I’m Roland, a software engineer with a degree from the Budapest
-    University of Technology and Economics. I’ve worked on various projects,
-    including an internship at <TextLink
-      href="https://www.audi.hu/en/"
-      className={"text-light-500 dark:text-dark-0"}>Audi</TextLink
-    >, where I gained practical experience in software development.
-  </p>
-  <p>
-    In my free time, I enjoy running and hiking — anything that gets me
-    outdoors. Feel free to check out my website to know what I'm currently up to
-    or get in touch through either <TextLink
-      href="mailto:hi@rolandtoth.com"
-      className={"text-light-500 dark:text-dark-0"}>e-mail</TextLink
-    > or <TextLink
-      href="https://x.com/rlndtth"
-      className={"text-light-500 dark:text-dark-0"}>X</TextLink
-    >.
-  </p>
+<section class="flex flex-col gap-1">
+  <section class="my-32">
+    <h1 class="text-base tracking-wide text-light-600 dark:text-dark-0">
+      Roland Tóth
+    </h1>
+    <p class="text-base font-normal text-light-500/80 dark:text-dark-200">
+      Software Engineer
+    </p>
+  </section>
+  <section
+    class="mb-24 flex flex-col gap-3 text-light-500/80 dark:text-dark-200"
+  >
+    <h2 class="text-base tracking-wide text-light-600 dark:text-dark-0">
+      Welcome!
+    </h2>
+    <p class="text-justify">
+      Hi, I’m Roland — a software engineer with a degree from the Budapest
+      University of Technology and Economics. I've worked on a variety of
+      projects, from building internal tools during my internship at <TextLink
+        href="https://www.audi.hu/en/"
+        className={"text-light-500 dark:text-dark-0"}>Audi</TextLink
+      > to developing complex, cloud-based features for my personal website.
+    </p>
+    <p>
+      Outside of tech, I enjoy running, hiking, and spending time outdoors. This
+      site is where I share what I’m currently working on — feel free to explore
+      or reach out via <TextLink
+        href="mailto:hi@rolandtoth.com"
+        className={"text-light-500 dark:text-dark-0"}>e-mail</TextLink
+      > or <TextLink
+        href="https://x.com/rlndtth"
+        className={"text-light-500 dark:text-dark-0"}>X</TextLink
+      >.
+    </p>
+  </section>
 </section>
