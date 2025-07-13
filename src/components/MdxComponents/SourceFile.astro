@@ -1,0 +1,41 @@
+---
+interface Props {
+  fileName: string;
+  type: "js" | "tsx";
+  href: string;
+}
+
+const { fileName, type, href } = Astro.props as Props;
+
+const mapIcon = {
+  js: {
+    src: "/file_icons/js.png",
+    size: 15,
+  },
+  tsx: {
+    src: "/file_icons/react.png",
+    size: 17,
+  },
+};
+---
+
+<li>
+  <a
+    target="_blank"
+    rel="noopener noreferrer"
+    href={href}
+    class="group relative flex cursor-alias items-center gap-2 rounded-md bg-dark-500 px-2 py-1 text-xsm transition-colors hover:bg-dark-400/40"
+  >
+    <!-- <span
+            class="absolute inset-0 origin-center rounded-md bg-dark-500 transition-transform duration-200 ease-in-out group-hover:scale-105"
+            aria-hidden="true"></span> -->
+    <img
+      src={mapIcon[type].src}
+      alt=""
+      class={type === "tsx"
+        ? "h-[17px] w-[17px] rounded-sm"
+        : "h-[15px] w-[15px] rounded-sm"}
+    />
+    <span class="relative z-10"> {fileName}.{type}</span>
+  </a>
+</li>
