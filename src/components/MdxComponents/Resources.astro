@@ -24,12 +24,17 @@ const { items }: Props = Astro.props;
     </span>
   </div>
 
-  <ol class="mt-2 space-y-2 sm:pl-3">
+  <ol class="mt-2 space-y-3 sm:px-2">
     {
       items.map((item, index) => (
-        <li>
-          <span>[{index + 1}]</span> {item.author}, <em>{item.title}</em>
-          <a href={item.url} class="ml-1 inline-flex">
+        <li class="flex justify-between gap-2">
+          <div>
+            <span>[{index + 1}]</span> {item.author}, <em>{item.title}</em>
+          </div>
+          <a
+            href={item.url}
+            class="ml-1 inline-flex items-baseline whitespace-nowrap"
+          >
             <span class="rounded-md border px-[0.4rem] text-xsm dark:border-dark-400/30 dark:bg-dark-700 hover:dark:border-dark-400/50">
               View &rarr;
             </span>
