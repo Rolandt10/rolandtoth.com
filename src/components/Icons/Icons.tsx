@@ -136,7 +136,7 @@ export const TwitterIcon = ({ size, ...props }) => {
 
 export const ArrowRightIcon = ({ size, ...props }) => {
   return (
-    <BaseIcon label="Arrow right" size={size} {...props}>
+    <BaseIcon label="t" size={size} {...props}>
       <line x1="5" y1="12" x2="19" y2="12"></line>
       <polyline points="12 5 19 12 12 19"></polyline>
     </BaseIcon>
@@ -234,6 +234,103 @@ export const GoogleIcon = ({ size, ...props }) => {
   return (
     <BaseIcon label="Google" size={size} {...props}>
       <path d="M51.981,24.4812c-7.7173-0.0038-15.4346-0.0019-23.1518-0.001c0.001,3.2009-0.0038,6.4018,0.0019,9.6017  c4.4693-0.001,8.9386-0.0019,13.407,0c-0.5179,3.0673-2.3408,5.8723-4.9258,7.5991c-1.625,1.0926-3.492,1.8018-5.4168,2.139  c-1.9372,0.3306-3.9389,0.3729-5.8713-0.0183c-1.9651-0.3921-3.8409-1.2108-5.4773-2.3649  c-2.6166-1.8383-4.6135-4.5279-5.6388-7.5549c-1.0484-3.0788-1.0561-6.5046,0.0048-9.5805  c0.7361-2.1679,1.9613-4.1705,3.5708-5.8002c1.9853-2.0324,4.5664-3.4853,7.3473-4.0811c2.3812-0.5083,4.8921-0.4113,7.2234,0.294  c1.9815,0.6016,3.8082,1.6874,5.3044,3.1163c1.5125-1.5039,3.0173-3.0164,4.527-4.5231c0.7918-0.811,1.624-1.5865,2.3908-2.4196  c-2.2928-2.1218-4.9805-3.8274-7.9172-4.9056C32.0723,4.0363,26.1097,3.995,20.7871,5.8372  C14.7889,7.8907,9.6815,12.3763,6.8497,18.0459c-0.9859,1.9536-1.7057,4.0388-2.1381,6.1836  C3.6238,29.5732,4.382,35.2707,6.8468,40.1378c1.6019,3.1768,3.8985,6.001,6.6843,8.215c2.6282,2.0958,5.6916,3.6439,8.9396,4.5078  c4.0984,1.0993,8.461,1.0743,12.5864,0.1355c3.7284-0.8581,7.256-2.6397,10.0725-5.24c2.977-2.7358,5.1006-6.3403,6.2249-10.2138  C52.5807,33.3171,52.7498,28.8064,51.981,24.4812z" />
+    </BaseIcon>
+  );
+};
+
+export const CloseIcon = ({ size, ...props }) => {
+  return (
+    <BaseIcon label="Close" size={size} {...props}>
+      <line x1="18" y1="6" x2="6" y2="18"></line>
+      <line x1="6" y1="6" x2="18" y2="18"></line>
+    </BaseIcon>
+  );
+};
+
+export const ChevronLeft = ({ size, ...props }) => {
+  return (
+    <BaseIcon label="Expand" size={size} {...props}>
+      <polyline points="15 18 9 12 15 6"></polyline>
+    </BaseIcon>
+  );
+};
+
+export const ChevronsRight = ({ size, ...props }) => {
+  return (
+    <BaseIcon label="Expand" size={size} {...props}>
+      <polyline points="13 17 18 12 13 7"></polyline>
+      <polyline points="6 17 11 12 6 7"></polyline>
+    </BaseIcon>
+  );
+};
+
+export const ArrowLeftUp = ({ size, ...props }) => {
+  return (
+    <BaseIcon label="Expand" size={size} {...props}>
+      <line x1="17" y1="17" x2="7" y2="7"></line>
+      <polyline points="7 17 7 7 17 7"></polyline>
+    </BaseIcon>
+  );
+};
+
+export const Information = ({ size, ...props }) => {
+  return (
+    <BaseIcon label="Information" size={size} {...props}>
+      <circle cx="12" cy="12" r="10"></circle>
+      <line x1="12" y1="16" x2="12" y2="12"></line>
+      <line x1="12" y1="8" x2="12.01" y2="8"></line>
+    </BaseIcon>
+  );
+};
+
+export const CornerDownRight = ({ size, ...props }) => {
+  return (
+    <BaseIcon label="" size={size} {...props}>
+      <polyline points="15 10 20 15 15 20"></polyline>
+      <path d="M4 4v7a4 4 0 0 0 4 4h12"></path>
+    </BaseIcon>
+  );
+};
+
+export const Circle = ({ size, ...props }) => {
+  return (
+    <BaseIcon label="" size={size} {...props}>
+      <circle cx="12" cy="12" r="10"></circle>
+    </BaseIcon>
+  );
+};
+
+export const Squiggle = ({ size, ...props }) => {
+  return (
+    <BaseIcon label="" size={size} {...props}>
+      <path d="M1 1C1 33 39 3.63014 39 33" strokeLinecap="round" />
+    </BaseIcon>
+  );
+};
+
+export const Code = ({ size, ...props }) => {
+  return (
+    <BaseIcon label="" size={size} {...props}>
+      <polyline points="16 18 22 12 16 6"></polyline>
+      <polyline points="8 6 2 12 8 18"></polyline>
+    </BaseIcon>
+  );
+};
+
+export const JavaScript = ({ size, ...props }) => {
+  return (
+    <BaseIcon label="JavaScript" size={size} {...props}>
+      <path d="M0 0h256v256H0V0z" fill="#F7DF1E" />
+      <path d="M67.312 213.932l19.59-11.856c3.78 6.701 7.218 12.371 15.465 12.371 7.905 0 12.89-3.092 12.89-15.12v-81.798h24.057v82.138c0 24.917-14.606 36.259-35.916 36.259-19.245 0-30.416-9.967-36.087-21.996M152.381 211.354l19.588-11.341c5.157 8.421 11.859 14.607 23.715 14.607 9.969 0 16.325-4.984 16.325-11.858 0-8.248-6.53-11.17-17.528-15.98l-6.013-2.58c-17.357-7.387-28.87-16.667-28.87-36.257 0-18.044 13.747-31.792 35.228-31.792 15.294 0 26.292 5.328 34.196 19.247L210.29 147.43c-4.125-7.389-8.591-10.31-15.465-10.31-7.046 0-11.514 4.468-11.514 10.31 0 7.217 4.468 10.14 14.778 14.608l6.014 2.577c20.45 8.765 31.963 17.7 31.963 37.804 0 21.654-17.012 33.51-39.867 33.51-22.339 0-36.774-10.654-43.819-24.574" />
+    </BaseIcon>
+  );
+};
+
+export const MessageSquare = ({ size, ...props }) => {
+  return (
+    <BaseIcon label="" size={size} {...props}>
+      <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+      ;
     </BaseIcon>
   );
 };
