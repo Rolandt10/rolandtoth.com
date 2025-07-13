@@ -35,51 +35,64 @@ export async function getStaticPaths() {
 }
 ---
 
-<Main title={post.data.title}>
-  <h1 class="my-24 text-lg dark:text-dark-0">{post.data.title}</h1>
-  <div class="flex justify-between">
-    <div
-      class="mb-16 flex w-max items-center justify-center gap-1 rounded-full border px-2 py-1 text-xsm dark:border-dark-500 dark:bg-dark-700"
-    >
-      <CalendarIcon
-        size={16}
-        stroke-width="1.6"
-        className="dark:text-dark-200"
-      />
-      <span class="dark:text-dark-400/70">&vert;</span>
-      <time datetime={post.data.date}
-        >{year}
-        <span class="dark:text-dark-400/70">&middot;</span>
-        {month}
-        <span class="dark:text-dark-400/70">&middot;</span>
-        {day}</time
+<Main title={post.data.title} isFullSpan={true}>
+  <div class="">
+    <h1 class="mx-auto my-24 max-w-[620px] text-lg dark:text-dark-0">
+      {post.data.title}
+    </h1>
+    <div class="mx-auto flex max-w-[620px] justify-between">
+      <div
+        class="mb-16 flex w-max items-center justify-center gap-1 rounded-full border px-2 py-1 text-xsm dark:border-dark-500 dark:bg-dark-700"
       >
+        <CalendarIcon
+          size={16}
+          stroke-width="1.6"
+          className="dark:text-dark-200"
+        />
+        <span class="dark:text-dark-400/70">&vert;</span>
+        <time datetime={post.data.date}
+          >{year}
+          <span class="dark:text-dark-400/70">&middot;</span>
+          {month}
+          <span class="dark:text-dark-400/70">&middot;</span>
+          {day}</time
+        >
+      </div>
+      <div
+        class="mb-16 flex w-max items-center justify-center gap-1 rounded-full border px-2 py-1 text-xsm dark:border-dark-500 dark:bg-dark-700"
+      >
+        <ClockIcon
+          size={16}
+          stroke-width="1.6"
+          className="dark:text-dark-200"
+        />
+        <span class="dark:text-dark-400/70">&vert;</span>
+        <span>{post.readTime} minutes</span>
+      </div>
     </div>
-    <div
-      class="mb-16 flex w-max items-center justify-center gap-1 rounded-full border px-2 py-1 text-xsm dark:border-dark-500 dark:bg-dark-700"
+    <article
+      class="markdown-content [&>*:not(figure)]:mx-auto [&>*:not(figure)]:max-w-[620px]"
     >
-      <ClockIcon size={16} stroke-width="1.6" className="dark:text-dark-200" />
-      <span class="dark:text-dark-400/70">&vert;</span>
-      <span>{post.readTime} minutes</span>
+      <Content components={mdxStyles} />
+    </article>
+    <div class="mx-auto my-14 flex max-w-[620px] items-center justify-between">
+      <a
+        href="/posts"
+        class="flex w-max items-center justify-center gap-2 self-center rounded-full border border-dark-500 px-3 py-1 text-xsm max-sm:h-10 max-sm:w-10 dark:bg-dark-700 hover:dark:border-dark-400/50"
+        ><span class="max-sm:text-lg">&leftarrow;</span><span
+          class="max-sm:sr-only">Back to posts</span
+        ></a
+      >
+      <ShareButtons client:load />
     </div>
-  </div>
-  <article class="markdown-content">
-    <Content components={mdxStyles} />
-  </article>
-  <div class="my-14 flex items-center justify-between">
-    <a
-      href="/posts"
-      class="flex w-max items-center justify-center gap-2 self-center rounded-full border border-dark-500 px-3 py-1 text-xsm max-sm:h-10 max-sm:w-10 dark:bg-dark-700 hover:dark:border-dark-400/50"
-      ><span class="max-sm:text-lg">&leftarrow;</span><span
-        class="max-sm:sr-only">Back to posts</span
-      ></a
-    >
-    <ShareButtons client:load />
-  </div>
 
-  <CommentEditor slug={post.slug} client:only="react" />
-  <TermsSection client:load />
-  <hr class="mb-11 h-[1px] border-0 dark:bg-dark-400/60" />
-  <div>Comments</div>
-  <CommentList slug={post.slug} client:load />
+    <div class="mx-auto mb-14 max-w-[620px]">
+      <CommentEditor slug={post.slug} client:only="react" />
+      <TermsSection client:load />
+      <hr class="mb-11 h-[1px] border-0 dark:bg-dark-400/60" />
+
+      <div class="mb-9">Comments</div>
+      <CommentList slug={post.slug} client:load />
+    </div>
+  </div>
 </Main>

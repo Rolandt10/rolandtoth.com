@@ -1,17 +1,16 @@
 import { Command } from "cmdk";
 import { useEffect, useState } from "react";
-import {
-  ApertureIcon,
-  ArrowRightIcon,
-  BookIcon,
-  EmailIcon,
-  HomeIcon,
-  SearchIcon,
-  TwitterIcon,
-} from "../Icons/Icons";
+import { SearchIcon } from "../Icons/Icons";
+import { CommandMenuContext } from "../../contexts/CommandMenuContext";
 
-const CommandMenu = ({ isOpen, setIsOpen }) => {
-  const [query, setQuery] = useState("");
+interface Props {
+  isOpen: boolean;
+  setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  children: React.ReactNode;
+}
+
+const CommandMenu = ({ isOpen, setIsOpen, children }: Props) => {
+  const [query, setQuery] = useState<string>("");
 
   useEffect(() => {
     const down = (e) => {
@@ -37,25 +36,6 @@ const CommandMenu = ({ isOpen, setIsOpen }) => {
     return text.toLowerCase().includes(query.toLowerCase());
   };
 
-  const browseItems = [
-    { name: "Snapshots", icon: <ApertureIcon size={16} />, href: "/snapshots" },
-    { name: "Home", icon: <HomeIcon size={16} />, href: "/" },
-    { name: "Posts", icon: <BookIcon size={16} />, href: "/posts" },
-  ].filter((item) => filterItem(item.name));
-
-  const contactItems = [
-    {
-      name: "Twitter / X",
-      icon: <TwitterIcon size={15} stroke-width="0.1" />,
-      href: "https://x.com/rlndtth",
-    },
-    {
-      name: "E-mail",
-      icon: <EmailIcon size={16} />,
-      href: "mailto:hi@rolandtoth.com",
-    },
-  ].filter((item) => filterItem(item.name));
-
   return (
     isOpen && (
       <Command.Dialog
@@ -74,44 +54,12 @@ const CommandMenu = ({ isOpen, setIsOpen }) => {
 
         <Command.List>
           <Command.Empty className="pt-2 text-sm">
-            This doesn't exist yet. Maybe next time. 😔
+            This doesn't exist yet. Maybe next time.{" "}
+            <span className="text-lg">😔</span>
           </Command.Empty>
-
-          {browseItems.length > 0 && (
-            <Command.Group heading="Browse">
-              {browseItems.map((item) => (
-                <Command.Item key={item.name}>
-                  <a href={item.href} className="group flex justify-between">
-                    <div className="flex items-center gap-3">
-                      {item.icon}
-                      {item.name}
-                    </div>
-                    <div className="hidden group-hover:block">
-                      <ArrowRightIcon size={16} />
-                    </div>
-                  </a>
-                </Command.Item>
-              ))}
-            </Command.Group>
-          )}
-
-          {contactItems.length > 0 && (
-            <Command.Group heading="Contact">
-              {contactItems.map((item) => (
-                <Command.Item key={item.name}>
-                  <a href={item.href} className="group flex justify-between">
-                    <div className="flex items-center gap-3">
-                      {item.icon}
-                      {item.name}
-                    </div>
-                    <div className="hidden group-hover:block">
-                      <ArrowRightIcon size={16} />
-                    </div>
-                  </a>
-                </Command.Item>
-              ))}
-            </Command.Group>
-          )}
+          <CommandMenuContext.Provider value={{ query, filterItem }}>
+            {children}
+          </CommandMenuContext.Provider>
         </Command.List>
       </Command.Dialog>
     )

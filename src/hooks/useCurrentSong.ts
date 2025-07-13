@@ -11,11 +11,16 @@ const WEBSOCKET_API_URL =
 //   });
 
 export function useCurrentSong() {
-  const [song, setSong] = useState(null);
+  const [song, setSong] = useState();
   const [error, setError] = useState(null);
   const socketRef = useRef<WebSocket | null>(null);
 
   useEffect(() => {
+    const cachedSong = localStorage.getItem("current-song");
+    if (cachedSong) {
+      setSong(JSON.parse(cachedSong));
+    }
+
     const ws = new WebSocket(WEBSOCKET_API_URL);
     socketRef.current = ws;
 
@@ -29,6 +34,7 @@ export function useCurrentSong() {
       try {
         const data = JSON.parse(event.data);
         setSong(data);
+        localStorage.setItem("current-song", JSON.stringify(data));
       } catch (err) {
         setError("Failed to parse song data!");
       }

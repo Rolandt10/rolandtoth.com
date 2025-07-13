@@ -3,7 +3,7 @@ import SongCard from "./SongCard.tsx";
 import { useCurrentSong } from "../../hooks/useCurrentSong.ts";
 import SongCardSkeleton from "./SongCardSkeleton.tsx";
 
-export default function CurrentSong() {
+export default function CurrentlyListening() {
   const { song, error } = useCurrentSong();
 
   if (error) {
