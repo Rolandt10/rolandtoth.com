@@ -133,3 +133,6 @@ dist
 
 # Prevent merging CI config from dev branch
 .github/workflows/dev-ci.yml
+
+.astro/
+.astro/
