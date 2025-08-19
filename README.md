@@ -1,7 +1,6 @@
-# `rolandtoth.com`
+# rolandtoth.com
 
-My personal website — a place for writing, experimenting, and building.  
-[Visit site](https://www.rolandtoth.com)
+My very own website
 
 ## Tech Stack
 
