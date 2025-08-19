@@ -24,8 +24,7 @@ My very own website
 ### Real-time Spotify integration
 
 Polls the Spotify API for the currently playing track and broadcasts updates via WebSockets to all connected clients.  
-Built with AWS Lambda, SQS, DynamoDB Streams, WebSocket API.  
-[Read blog post](https://www.rolandtoth.com/posts/real-time-spotify-tracker)
+Built with AWS Lambda, SQS, DynamoDB Streams, WebSocket API.
 
 **Lambda functions:**
 
